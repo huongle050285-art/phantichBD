@@ -189,6 +189,50 @@ function renderMatchCard(m) {
       </div>
 
       ${renderAnalysisPanel(m)}
+      ${renderMlPanel(m)}
+    </div>
+  `;
+}
+
+// "Dự đoán ML" — kết quả từ mô hình học máy (hồi quy logistic) huấn luyện từ
+// dữ liệu lịch sử 2022-2024, dùng phong độ + đối đầu MÙA HIỆN TẠI (football-data.org)
+// để dự đoán. Khác với "Dự đoán BD" ở trên (chỉ tính từ tỉ lệ kèo tức thời).
+function renderMlPanel(m) {
+  const ml = m.mlPrediction;
+  if (!ml) return '';
+
+  if (!ml.available) {
+    return `
+      <div class="ml-panel">
+        <div class="ml-header">
+          <div class="ml-title-group">
+            <span class="ml-title">Dự đoán ML</span>
+            <span class="ml-beta-tag">Beta</span>
+          </div>
+        </div>
+        <div class="ml-unavailable">Chưa đủ dữ liệu: ${escapeHtml(ml.reason || 'không xác định.')}</div>
+      </div>
+    `;
+  }
+
+  const meterHtml = renderMeter({ home: ml.homeWinProb, draw: ml.drawProb, away: ml.awayWinProb });
+  const accPct = ml.modelMeta?.valAcc != null ? Math.round(ml.modelMeta.valAcc * 100) : null;
+  const notesHtml =
+    ml.coldStartNotes?.length > 0
+      ? `<ul class="ml-notes">${ml.coldStartNotes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
+      : '';
+
+  return `
+    <div class="ml-panel">
+      <div class="ml-header">
+        <div class="ml-title-group">
+          <span class="ml-title">Dự đoán ML</span>
+          <span class="ml-beta-tag">Beta</span>
+        </div>
+        ${meterHtml}
+      </div>
+      ${accPct !== null ? `<div class="ml-meta">Mô hình học từ ${ml.modelMeta.nTrain} trận (2022-2024) · độ chính xác đo thật: ${accPct}%</div>` : ''}
+      ${notesHtml}
     </div>
   `;
 }

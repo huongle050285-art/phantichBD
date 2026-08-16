@@ -2,11 +2,14 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getFinishedMatchesCached, isFootballDataConfigured } from './services/footballData.js';
+import { predictMatch } from './ml/predict.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const API_KEY = process.env.API_FOOTBALL_KEY;
 const ODDS_API_KEY = process.env.ODDS_API_KEY;
+const FOOTBALL_DATA_KEY = process.env.FOOTBALL_DATA_KEY;
 const PORT = process.env.PORT || 3000;
 const LEAGUE_ID = process.env.LEAGUE_ID || 39; // 39 = Premier League
 const DEFAULT_SEASON = process.env.SEASON || 2024;
@@ -32,6 +35,14 @@ if (!ODDS_API_KEY || ODDS_API_KEY === 'dan_key_cua_ban_o_day') {
     '[Cảnh báo cấu hình] Chưa thấy ODDS_API_KEY trong .env — chế độ "Trận sắp diễn ra" sẽ không hoạt động.\n' +
       '  Lấy key miễn phí tại https://the-odds-api.com rồi dán vào ODDS_API_KEY trong .env.\n' +
       '  (Chế độ "Theo mùa giải" vẫn chạy bình thường vì chỉ cần API_FOOTBALL_KEY.)'
+  );
+}
+
+if (!FOOTBALL_DATA_KEY || FOOTBALL_DATA_KEY === 'dan_key_cua_ban_o_day') {
+  console.warn(
+    '[Cảnh báo cấu hình] Chưa thấy FOOTBALL_DATA_KEY trong .env — khối "Dự đoán ML" sẽ hiển thị "chưa đủ dữ liệu".\n' +
+      '  Lấy key miễn phí tại https://www.football-data.org/client/register rồi dán vào FOOTBALL_DATA_KEY trong .env.\n' +
+      '  (Các tính năng khác vẫn chạy bình thường mà không cần key này.)'
   );
 }
 
@@ -226,6 +237,23 @@ async function getUpcomingMatchesCached() {
     return null;
   }
 
+  // Dữ liệu trận đấu mùa hiện tại (kết quả thật) để tính phong độ + đối đầu
+  // cho khối "Dự đoán ML" — tải 1 LẦN cho cả danh sách, không phải mỗi trận.
+  // Nếu football-data.org chưa cấu hình hoặc lỗi, mlPrediction của MỌI trận sẽ
+  // trả về available:false kèm lý do, không làm hỏng phần còn lại của trang.
+  let currentSeasonMatches = null;
+  let currentSeasonMatchesError = null;
+  if (isFootballDataConfigured()) {
+    try {
+      currentSeasonMatches = await getFinishedMatchesCached();
+    } catch (err) {
+      currentSeasonMatchesError = err.message;
+      console.warn('[football-data.org] cảnh báo:', err.message);
+    }
+  } else {
+    currentSeasonMatchesError = 'Chưa cấu hình FOOTBALL_DATA_KEY trong .env.';
+  }
+
   const matches = (events || []).map((ev) => {
     let odds = null;
     let prediction = null;
@@ -280,6 +308,15 @@ async function getUpcomingMatchesCached() {
 
     const analysis = buildAnalysis({ homeTeam: ev.home_team, awayTeam: ev.away_team, prediction, asianHandicap, totals });
 
+    const mlPrediction = currentSeasonMatches
+      ? predictMatch({
+          matches: currentSeasonMatches,
+          homeTeamRaw: ev.home_team,
+          awayTeamRaw: ev.away_team,
+          matchTime: new Date(ev.commence_time).getTime(),
+        })
+      : { available: false, reason: currentSeasonMatchesError || 'Chưa có dữ liệu mùa hiện tại.' };
+
     return {
       id: ev.id,
       commenceTime: ev.commence_time,
@@ -290,6 +327,7 @@ async function getUpcomingMatchesCached() {
       totals,
       prediction,
       analysis,
+      mlPrediction,
     };
   });
 

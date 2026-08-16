@@ -294,6 +294,59 @@
     font-style: italic;
   }
 
+  /* ---- Khối "Dự đoán ML" (mô hình học máy huấn luyện từ dữ liệu lịch sử) ---- */
+  .ml-panel {
+    background: var(--page-plane);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+  }
+  .ml-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .ml-title-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ml-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .ml-beta-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--series-home);
+    border: 1px solid var(--series-home);
+    border-radius: 999px;
+    padding: 1px 7px;
+  }
+  .ml-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .ml-notes {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .ml-unavailable {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
   .empty, .error, .loading {
     padding: 40px 20px;
     text-align: center;
@@ -365,9 +418,10 @@
     </div>
 
     <footer>
-      Nguồn dữ liệu: <a href="https://the-odds-api.com/" target="_blank" rel="noopener">The Odds API</a> (trận sắp diễn ra)
-      và <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a> (theo mùa giải).
-      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu), không phải mô hình học máy huấn luyện trên dữ liệu lịch sử — chỉ mang tính tham khảo, không phải lời khuyên cá cược.
+      Nguồn dữ liệu: <a href="https://the-odds-api.com/" target="_blank" rel="noopener">The Odds API</a> (trận sắp diễn ra),
+      <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a> (theo mùa giải &amp; dữ liệu huấn luyện 2022-2024)
+      và <a href="https://www.football-data.org/" target="_blank" rel="noopener">football-data.org</a> (phong độ &amp; đối đầu mùa hiện tại).
+      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024 để học mối liên hệ giữa phong độ/đối đầu và kết quả — độ chính xác thật hiển thị ngay trong khối dự đoán. Cả 2 chỉ mang tính tham khảo, không phải lời khuyên cá cược.
     </footer>
   </main>
 
