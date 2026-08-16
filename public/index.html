@@ -206,6 +206,94 @@
     padding: 5px 10px;
   }
 
+  /* ---- Match cards (chế độ "Trận sắp diễn ra") ---- */
+  .match-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .match-card {
+    padding: 16px;
+    border-bottom: 1px solid var(--gridline);
+  }
+  .match-card:last-child { border-bottom: none; }
+  .match-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .match-card-head .teams { font-size: 15px; }
+  .match-card-head .num { font-size: 13px; color: var(--text-secondary); }
+
+  .match-odds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .odds-block {
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .odds-block-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .odds-block-value {
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.5;
+  }
+
+  .analysis-panel {
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .analysis-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .analysis-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .analysis-score-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    background: var(--series-home);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .analysis-notes {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .analysis-disclaimer {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
   .empty, .error, .loading {
     padding: 40px 20px;
     text-align: center;
@@ -226,7 +314,7 @@
 <body>
   <header>
     <h1>Ngoại hạng Anh — Tỉ lệ kèo &amp; Dự đoán</h1>
-    <p>Dữ liệu lấy trực tiếp từ API-Football (server tự cache để tiết kiệm quota gói free).</p>
+    <p>Dữ liệu kèo lấy trực tiếp từ The Odds API / API-Football (server tự cache để tiết kiệm quota gói free).</p>
   </header>
 
   <main>
@@ -277,8 +365,9 @@
     </div>
 
     <footer>
-      Nguồn dữ liệu: <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a>.
-      Gói miễn phí giới hạn 100 request/ngày — dữ liệu được cache trên server trong vài phút.
+      Nguồn dữ liệu: <a href="https://the-odds-api.com/" target="_blank" rel="noopener">The Odds API</a> (trận sắp diễn ra)
+      và <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a> (theo mùa giải).
+      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu), không phải mô hình học máy huấn luyện trên dữ liệu lịch sử — chỉ mang tính tham khảo, không phải lời khuyên cá cược.
     </footer>
   </main>
 

@@ -135,6 +135,65 @@ async function callOddsApi(pathName, params = {}) {
   return res.json();
 }
 
+// "Dự đoán BD" — KHÔNG phải mô hình máy học huấn luyện trên dữ liệu lịch sử,
+// mà là bộ quy tắc thống kê kết hợp 3 loại kèo (1X2 + châu Á + tài xỉu) thành
+// 1 nhận định + tỉ số gợi ý dễ đọc. Nói rõ điều này trong UI để không gây hiểu
+// lầm đây là "AI" theo nghĩa mô hình huấn luyện.
+function fmtPoint(p) {
+  const n = Number(p);
+  return n > 0 ? `+${n}` : `${n}`;
+}
+
+function buildAnalysis({ homeTeam, awayTeam, prediction, asianHandicap, totals }) {
+  if (!asianHandicap && !prediction && !totals) return null;
+
+  const notes = [];
+  let favoriteTeam = null;
+  let marginGoals = null;
+
+  if (asianHandicap) {
+    const homePoint = Number(asianHandicap.homePoint);
+    marginGoals = Math.abs(homePoint);
+    favoriteTeam = homePoint < 0 ? homeTeam : homePoint > 0 ? awayTeam : null;
+    if (favoriteTeam) {
+      const underdog = favoriteTeam === homeTeam ? awayTeam : homeTeam;
+      notes.push(
+        `Kèo châu Á (chấp ${fmtPoint(homePoint)} cho ${homeTeam}) cho thấy ${favoriteTeam} được đánh giá nhỉnh hơn ${underdog} khoảng ${marginGoals} bàn.`
+      );
+    } else {
+      notes.push('Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.');
+    }
+  } else if (prediction) {
+    favoriteTeam = prediction.home >= prediction.away ? homeTeam : awayTeam;
+  }
+
+  if (totals) {
+    const leanText = totals.leanOver ? 'nghiêng Tài (Over)' : 'nghiêng Xỉu (Under)';
+    notes.push(`Kèo tài xỉu ở mức ${totals.point} bàn, thị trường ${leanText} (${totals.overProb}% Tài / ${totals.underProb}% Xỉu).`);
+  }
+
+  let suggestedScore = null;
+  if (favoriteTeam && marginGoals !== null && totals) {
+    const total = Math.max(1, Math.round(totals.point));
+    const margin = Math.min(Math.round(marginGoals), total); // không để hiệu số > tổng bàn
+    const favGoals = Math.round((total + margin) / 2);
+    const dogGoals = Math.max(0, total - favGoals);
+    suggestedScore =
+      favoriteTeam === homeTeam ? { home: favGoals, away: dogGoals } : { home: dogGoals, away: favGoals };
+    // Không push câu "tỉ số gợi ý" vào notes — frontend hiển thị suggestedScore
+    // riêng thành 1 badge nổi bật, tránh lặp lại thông tin.
+  }
+
+  if (notes.length === 0) return null;
+
+  return {
+    favoriteTeam,
+    marginGoals,
+    suggestedScore,
+    notes, // mảng các câu nhận định riêng biệt, để frontend tự trình bày
+  };
+}
+
 async function getUpcomingMatchesCached() {
   const key = 'upcoming-matches';
   const cached = getCached(key);
@@ -146,18 +205,19 @@ async function getUpcomingMatchesCached() {
     );
   }
 
-  // markets: h2h = kèo 1X2 (Chủ/Hòa/Khách), spreads = kèo châu Á (handicap).
+  // markets: h2h = kèo 1X2 (Chủ/Hòa/Khách), spreads = kèo châu Á (handicap),
+  // totals = kèo tài xỉu (Over/Under tổng số bàn thắng).
   // "spreads" của The Odds API cho bóng đá chính là kèo châu Á: mỗi đội có 1
   // "point" (mức chấp, vd -1.5 / +1.5) và 1 tỉ lệ (price) đi kèm.
   const events = await callOddsApi(`/sports/${ODDS_API_SPORT}/odds/`, {
     regions: 'eu',
-    markets: 'h2h,spreads',
+    markets: 'h2h,spreads,totals',
     oddsFormat: 'decimal',
     dateFormat: 'iso',
   });
 
   // Tìm bookmaker ĐẦU TIÊN có market mong muốn — không phải bookmaker nào cũng
-  // có kèo châu Á, nên dò riêng cho từng loại market thay vì chỉ lấy bookmaker[0].
+  // có đủ cả 3 loại kèo, nên dò riêng cho từng loại market thay vì chỉ lấy bookmaker[0].
   function findMarket(bookmakers, marketKey) {
     for (const bm of bookmakers || []) {
       const market = bm.markets?.find((m) => m.key === marketKey);
@@ -170,6 +230,7 @@ async function getUpcomingMatchesCached() {
     let odds = null;
     let prediction = null;
     let asianHandicap = null;
+    let totals = null;
 
     const h2h = findMarket(ev.bookmakers, 'h2h');
     if (h2h) {
@@ -197,6 +258,28 @@ async function getUpcomingMatchesCached() {
       }
     }
 
+    const totalsMarket = findMarket(ev.bookmakers, 'totals');
+    if (totalsMarket) {
+      const overSide = totalsMarket.market.outcomes.find((o) => o.name === 'Over');
+      const underSide = totalsMarket.market.outcomes.find((o) => o.name === 'Under');
+      if (overSide && underSide) {
+        const rawOver = 1 / overSide.price;
+        const rawUnder = 1 / underSide.price;
+        const sum = rawOver + rawUnder;
+        totals = {
+          bookmaker: totalsMarket.bookmaker.title,
+          point: overSide.point,
+          overOdd: overSide.price,
+          underOdd: underSide.price,
+          overProb: Math.round((rawOver / sum) * 100),
+          underProb: Math.round((rawUnder / sum) * 100),
+          leanOver: rawOver > rawUnder,
+        };
+      }
+    }
+
+    const analysis = buildAnalysis({ homeTeam: ev.home_team, awayTeam: ev.away_team, prediction, asianHandicap, totals });
+
     return {
       id: ev.id,
       commenceTime: ev.commence_time,
@@ -204,7 +287,9 @@ async function getUpcomingMatchesCached() {
       awayTeam: ev.away_team,
       odds,
       asianHandicap,
+      totals,
       prediction,
+      analysis,
     };
   });
 

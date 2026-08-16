@@ -120,6 +120,13 @@ async function loadUpcoming() {
   }
 }
 
+// Kèo châu Á: point dương nghĩa là đội đó được chấp (kèo dưới),
+// âm là đội đó chấp đối thủ (kèo trên).
+function fmtPoint(p) {
+  const n = Number(p);
+  return n > 0 ? `+${n}` : `${n}`;
+}
+
 function renderUpcomingTable() {
   if (state.upcomingMatches.length === 0) {
     tableWrap.innerHTML = '<div class="empty">Không có trận đấu nào sắp diễn ra.</div>';
@@ -134,59 +141,82 @@ function renderUpcomingTable() {
   tileWithOdds.textContent = withOdds;
   tilePredictions.textContent = withPrediction;
 
-  // Kèo châu Á: hiển thị mức chấp (point) của đội chủ nhà + tỉ lệ 2 bên.
-  // Point dương nghĩa là đội đó được chấp (kèo dưới), âm là đội đó chấp đối thủ (kèo trên).
-  function fmtPoint(p) {
-    const n = Number(p);
-    return n > 0 ? `+${n}` : `${n}`;
-  }
-  function renderHandicapCell(m) {
-    if (!m.asianHandicap) return '<span class="status-badge">Chưa có kèo châu Á</span>';
-    const h = m.asianHandicap;
-    return `
-      ${escapeHtml(m.homeTeam)} ${fmtPoint(h.homePoint)} @ ${h.homeOdd}<br/>
-      ${escapeHtml(m.awayTeam)} ${fmtPoint(h.awayPoint)} @ ${h.awayOdd}
-      <div class="status-badge">${escapeHtml(h.bookmaker)}</div>
-    `;
-  }
-
-  const rows = state.upcomingMatches
+  const cards = state.upcomingMatches
     .slice()
     .sort((a, b) => new Date(a.commenceTime) - new Date(b.commenceTime))
-    .map((m) => {
-      const oddsCell = m.odds
-        ? `${m.odds.home} / ${m.odds.draw} / ${m.odds.away}<div class="status-badge">${escapeHtml(m.odds.bookmaker)}</div>`
-        : '<span class="status-badge">Chưa có kèo</span>';
-
-      const predCell = m.prediction
-        ? renderMeter(m.prediction)
-        : '<span class="status-badge">Không có dữ liệu</span>';
-
-      return `
-        <tr>
-          <td class="num">${fmtDate(m.commenceTime)}</td>
-          <td><div class="teams">${escapeHtml(m.homeTeam)} vs ${escapeHtml(m.awayTeam)}</div></td>
-          <td class="num">${oddsCell}</td>
-          <td class="num">${renderHandicapCell(m)}</td>
-          <td>${predCell}</td>
-        </tr>
-      `;
-    })
+    .map((m) => renderMatchCard(m))
     .join('');
 
-  tableWrap.innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <th>Thời gian</th>
-          <th>Trận đấu</th>
-          <th>Kèo 1X2 (Chủ / Hòa / Khách)</th>
-          <th>Kèo châu Á (Handicap)</th>
-          <th>Dự đoán (tính từ kèo)</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
+  tableWrap.innerHTML = `<div class="match-list">${cards}</div>`;
+}
+
+function renderMatchCard(m) {
+  const oddsValue = m.odds
+    ? `${m.odds.home} / ${m.odds.draw} / ${m.odds.away}<div class="status-badge">${escapeHtml(m.odds.bookmaker)}</div>`
+    : '<span class="status-badge">Chưa có kèo</span>';
+
+  const handicapValue = m.asianHandicap
+    ? `${escapeHtml(m.homeTeam)} ${fmtPoint(m.asianHandicap.homePoint)} @ ${m.asianHandicap.homeOdd}<br/>` +
+      `${escapeHtml(m.awayTeam)} ${fmtPoint(m.asianHandicap.awayPoint)} @ ${m.asianHandicap.awayOdd}` +
+      `<div class="status-badge">${escapeHtml(m.asianHandicap.bookmaker)}</div>`
+    : '<span class="status-badge">Chưa có kèo châu Á</span>';
+
+  const totalsValue = m.totals
+    ? `Mức ${m.totals.point} bàn<br/>Tài @ ${m.totals.overOdd} / Xỉu @ ${m.totals.underOdd}` +
+      `<div class="status-badge">${escapeHtml(m.totals.bookmaker)}</div>`
+    : '<span class="status-badge">Chưa có kèo tài xỉu</span>';
+
+  return `
+    <div class="match-card">
+      <div class="match-card-head">
+        <div class="teams">${escapeHtml(m.homeTeam)} vs ${escapeHtml(m.awayTeam)}</div>
+        <div class="num">${fmtDate(m.commenceTime)}</div>
+      </div>
+
+      <div class="match-odds-grid">
+        <div class="odds-block">
+          <div class="odds-block-label">Kèo 1X2 (Chủ / Hòa / Khách)</div>
+          <div class="odds-block-value">${oddsValue}</div>
+        </div>
+        <div class="odds-block">
+          <div class="odds-block-label">Kèo châu Á (Handicap)</div>
+          <div class="odds-block-value">${handicapValue}</div>
+        </div>
+        <div class="odds-block">
+          <div class="odds-block-label">Kèo tài xỉu (Over/Under)</div>
+          <div class="odds-block-value">${totalsValue}</div>
+        </div>
+      </div>
+
+      ${renderAnalysisPanel(m)}
+    </div>
+  `;
+}
+
+function renderAnalysisPanel(m) {
+  if (!m.prediction && !m.analysis) {
+    return '<div class="analysis-panel"><span class="status-badge">Chưa đủ dữ liệu để phân tích</span></div>';
+  }
+
+  const meterHtml = m.prediction ? renderMeter(m.prediction) : '';
+  const scoreBadge = m.analysis?.suggestedScore
+    ? `<span class="analysis-score-badge">Tỉ số gợi ý: ${m.analysis.suggestedScore.home} - ${m.analysis.suggestedScore.away}</span>`
+    : '';
+  const notesHtml =
+    m.analysis?.notes?.length > 0
+      ? `<ul class="analysis-notes">${m.analysis.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
+      : '';
+
+  return `
+    <div class="analysis-panel">
+      <div class="analysis-header">
+        <span class="analysis-title">Dự đoán BD</span>
+        ${meterHtml}
+      </div>
+      ${scoreBadge}
+      ${notesHtml}
+      <div class="analysis-disclaimer">Tính từ tỉ lệ kèo hiện có, chỉ mang tính tham khảo — không phải lời khuyên cá cược.</div>
+    </div>
   `;
 }
 
