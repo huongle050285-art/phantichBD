@@ -1,7 +1,8 @@
 // Client cho football-data.org — nguồn DUY NHẤT trong 3 API đang dùng có
 // KẾT QUẢ TRẬN ĐẤU + BẢNG XẾP HẠNG của MÙA GIẢI HIỆN TẠI trên gói free
 // (API-Football free chỉ tới hết mùa 2024, The Odds API chỉ có tỉ lệ kèo).
-// Dùng để tính phong độ + đối đầu "thật" cho khối "Dự đoán ML".
+// Dùng để tính phong độ + đối đầu "thật" cho khối "Dự đoán ML" và khung
+// "Phân tích phong độ & đối đầu".
 //
 // Đăng ký key miễn phí (chỉ cần email): https://www.football-data.org/client/register
 import { createCache } from '../cache.js';

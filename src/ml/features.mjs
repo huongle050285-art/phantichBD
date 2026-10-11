@@ -1,7 +1,8 @@
 // Tính "đặc trưng" (features) cho 1 trận đấu, dùng CHUNG cho cả lúc huấn
 // luyện (scripts/train.mjs, chạy trên dữ liệu lịch sử 2022-2024) và lúc dự
-// đoán thật (src/ml/predict.js, chạy trên dữ liệu mùa hiện tại từ
-// football-data.org). Dùng chung 1 bộ hàm để tránh lệch logic giữa 2 nơi.
+// đoán thật (src/ml/predict.js, src/ml/matchAnalysis.js — chạy trên dữ liệu
+// mùa hiện tại từ football-data.org). Dùng chung 1 bộ hàm để tránh lệch logic
+// giữa các nơi.
 //
 // Input `matches`: mảng các trận đã đấu xong, mỗi phần tử dạng
 //   { date: 'YYYY-MM-DD' (hoặc ISO), homeTeam, awayTeam, homeGoals, awayGoals }
@@ -37,6 +38,12 @@ function pointsFor(teamGoals, oppGoals) {
   if (teamGoals > oppGoals) return 3;
   if (teamGoals === oppGoals) return 1;
   return 0;
+}
+
+function resultLetter(teamGoals, oppGoals) {
+  if (teamGoals > oppGoals) return 'W';
+  if (teamGoals === oppGoals) return 'D';
+  return 'L';
 }
 
 // Lấy tối đa N trận GẦN NHẤT của 1 đội, trước 1 thời điểm cho trước, tính theo
@@ -85,21 +92,56 @@ export function computeForm(matches, team, beforeTime, venueFilter = null, limit
   };
 }
 
-// Thành tích đối đầu giữa 2 đội cụ thể (không phân biệt ai đá sân nhà lúc đối
-// đầu trước đó), tính trên tối đa `limit` lần gặp gần nhất.
-export function computeH2H(matches, homeTeam, awayTeam, beforeTime, limit = 5) {
+// Chi tiết từng trận gần nhất của 1 đội (để HIỂN THỊ ra giao diện — khác với
+// computeForm ở trên vốn chỉ trả về số liệu TỔNG HỢP). Mỗi phần tử:
+// { date, opponent, venue: 'home'|'away', goalsFor, goalsAgainst, result: 'W'|'D'|'L' }
+export function getRecentMatchResults(matches, team, beforeTime, limit = 5) {
+  const recent = recentMatchesForTeam(matches, team, beforeTime, null, limit);
+  return recent.map((m) => {
+    const goalsFor = m._isHome ? m.homeGoals : m.awayGoals;
+    const goalsAgainst = m._isHome ? m.awayGoals : m.homeGoals;
+    return {
+      date: m.date,
+      opponent: m._isHome ? m.awayTeam : m.homeTeam,
+      venue: m._isHome ? 'home' : 'away',
+      goalsFor,
+      goalsAgainst,
+      result: resultLetter(goalsFor, goalsAgainst),
+    };
+  });
+}
+
+function recentH2HMatches(matches, teamA, teamB, beforeTime, limit) {
   const relevant = [];
   for (const m of matches) {
     const t = toTime(m.date);
     if (!(t < beforeTime)) continue;
     const isPair =
-      (m.homeTeam === homeTeam && m.awayTeam === awayTeam) ||
-      (m.homeTeam === awayTeam && m.awayTeam === homeTeam);
+      (m.homeTeam === teamA && m.awayTeam === teamB) || (m.homeTeam === teamB && m.awayTeam === teamA);
     if (!isPair) continue;
     relevant.push({ ...m, _time: t });
   }
   relevant.sort((a, b) => b._time - a._time);
-  const recent = relevant.slice(0, limit);
+  return relevant.slice(0, limit);
+}
+
+// Danh sách chi tiết các lần đối đầu gần nhất giữa 2 đội cụ thể — để HIỂN THỊ
+// (vd "20/03/2026: Arsenal 2-1 Chelsea"). Giữ nguyên chiều sân nhà/khách lúc
+// trận đó diễn ra (khác với computeH2H bên dưới, vốn quy đổi góc nhìn).
+export function getH2HMatches(matches, teamA, teamB, beforeTime, limit = 5) {
+  return recentH2HMatches(matches, teamA, teamB, beforeTime, limit).map((m) => ({
+    date: m.date,
+    homeTeam: m.homeTeam,
+    awayTeam: m.awayTeam,
+    homeGoals: m.homeGoals,
+    awayGoals: m.awayGoals,
+  }));
+}
+
+// Thành tích đối đầu giữa 2 đội cụ thể (không phân biệt ai đá sân nhà lúc đối
+// đầu trước đó), tính trên tối đa `limit` lần gặp gần nhất.
+export function computeH2H(matches, homeTeam, awayTeam, beforeTime, limit = 5) {
+  const recent = recentH2HMatches(matches, homeTeam, awayTeam, beforeTime, limit);
 
   if (recent.length === 0) {
     return { homeWinRate: NEUTRAL_H2H_WIN_RATE, avgGoalDiff: NEUTRAL_H2H_GOAL_DIFF, gamesCount: 0 };

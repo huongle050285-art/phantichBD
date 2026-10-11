@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getFinishedMatchesCached, isFootballDataConfigured } from './services/footballData.js';
 import { predictMatch } from './ml/predict.js';
+import { buildMatchStatsPanel } from './ml/matchAnalysis.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -238,9 +239,10 @@ async function getUpcomingMatchesCached() {
   }
 
   // Dữ liệu trận đấu mùa hiện tại (kết quả thật) để tính phong độ + đối đầu
-  // cho khối "Dự đoán ML" — tải 1 LẦN cho cả danh sách, không phải mỗi trận.
-  // Nếu football-data.org chưa cấu hình hoặc lỗi, mlPrediction của MỌI trận sẽ
-  // trả về available:false kèm lý do, không làm hỏng phần còn lại của trang.
+  // cho khối "Dự đoán ML" và khung "Phân tích phong độ & đối đầu" — tải 1 LẦN
+  // cho cả danh sách, không phải mỗi trận. Nếu football-data.org chưa cấu hình
+  // hoặc lỗi, các khối liên quan của MỌI trận sẽ trả về available:false kèm lý
+  // do, không làm hỏng phần còn lại của trang.
   let currentSeasonMatches = null;
   let currentSeasonMatchesError = null;
   if (isFootballDataConfigured()) {
@@ -308,12 +310,24 @@ async function getUpcomingMatchesCached() {
 
     const analysis = buildAnalysis({ homeTeam: ev.home_team, awayTeam: ev.away_team, prediction, asianHandicap, totals });
 
+    const matchTime = new Date(ev.commence_time).getTime();
+
     const mlPrediction = currentSeasonMatches
       ? predictMatch({
           matches: currentSeasonMatches,
           homeTeamRaw: ev.home_team,
           awayTeamRaw: ev.away_team,
-          matchTime: new Date(ev.commence_time).getTime(),
+          matchTime,
+        })
+      : { available: false, reason: currentSeasonMatchesError || 'Chưa có dữ liệu mùa hiện tại.' };
+
+    const statsPanel = currentSeasonMatches
+      ? buildMatchStatsPanel({
+          matches: currentSeasonMatches,
+          homeTeamRaw: ev.home_team,
+          awayTeamRaw: ev.away_team,
+          matchTime,
+          asianHandicap,
         })
       : { available: false, reason: currentSeasonMatchesError || 'Chưa có dữ liệu mùa hiện tại.' };
 
@@ -328,6 +342,7 @@ async function getUpcomingMatchesCached() {
       prediction,
       analysis,
       mlPrediction,
+      statsPanel,
     };
   });
 

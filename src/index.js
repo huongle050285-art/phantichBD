@@ -1,18 +1,13 @@
-// Chạy tuần tự cả 3 bước: fixtures -> odds -> predictions
-// Dùng khi muốn lấy toàn bộ dữ liệu trong 1 lệnh: npm run fetch:all
-// LƯU Ý: sẽ tốn quota nhanh hơn nếu chạy hết 1 lần trên gói free (100 req/ngày).
+// Chạy tuần tự cả 3 script fetch cũ (tuỳ chọn, không bắt buộc cho web app).
+import { spawnSync } from 'node:child_process';
 
-import { execFileSync } from 'node:child_process';
+const scripts = ['src/fetchFixtures.js', 'src/fetchOdds.js', 'src/fetchPredictions.js'];
 
-const steps = [
-  ['node', ['src/fetchFixtures.js']],
-  ['node', ['src/fetchOdds.js']],
-  ['node', ['src/fetchPredictions.js']],
-];
-
-for (const [cmd, args] of steps) {
-  console.log(`\n=== Đang chạy: ${cmd} ${args.join(' ')} ===`);
-  execFileSync(cmd, args, { stdio: 'inherit' });
+for (const script of scripts) {
+  console.log(`\n=== Chạy ${script} ===`);
+  const result = spawnSync('node', [script], { stdio: 'inherit' });
+  if (result.status !== 0) {
+    console.error(`Script ${script} lỗi, dừng lại.`);
+    process.exit(result.status || 1);
+  }
 }
-
-console.log('\nHoàn tất! Kiểm tra thư mục data/ để xem kết quả.');

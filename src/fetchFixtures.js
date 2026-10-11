@@ -1,27 +1,18 @@
-import 'dotenv/config';
-import { writeFile } from 'node:fs/promises';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { callApiFootball } from './apiClient.js';
 
-const LEAGUE_ID = process.env.LEAGUE_ID || 39; // 39 = Premier League
-const SEASON = process.env.SEASON || 2023;
+const LEAGUE_ID = process.env.LEAGUE_ID || 39;
+const SEASON = process.env.SEASON || 2024;
 
 async function main() {
-  console.log(`Đang lấy lịch thi đấu Premier League mùa ${SEASON}...`);
-
-  const fixtures = await callApiFootball('/fixtures', {
-    league: LEAGUE_ID,
-    season: SEASON,
-  });
-
-  await writeFile(
-    new URL('../data/fixtures.json', import.meta.url),
-    JSON.stringify(fixtures, null, 2)
-  );
-
-  console.log(`Đã lưu ${fixtures.length} trận đấu vào data/fixtures.json`);
+  console.log(`Đang tải lịch thi đấu mùa ${SEASON}...`);
+  const fixtures = await callApiFootball('/fixtures', { league: LEAGUE_ID, season: SEASON });
+  mkdirSync('data', { recursive: true });
+  writeFileSync('data/fixtures.json', JSON.stringify(fixtures, null, 2));
+  console.log(`Đã lưu ${fixtures.length} trận vào data/fixtures.json`);
 }
 
 main().catch((err) => {
-  console.error('Lỗi khi lấy fixtures:', err.message);
+  console.error('Lỗi:', err.message);
   process.exit(1);
 });
