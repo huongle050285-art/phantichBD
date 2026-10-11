@@ -232,6 +232,56 @@
   }
   .match-card-head .teams { font-size: 15px; }
   .match-card-head .num { font-size: 13px; color: var(--text-secondary); }
+  .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--loss-text);
+    animation: live-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+
+  /* ---- Khung "Cả trận" / "Hiện tại (Live)" — xem src/ml/frameSnapshots.js:
+     mỗi khung được backend CHỐT (khoá) ngay lần đầu xuất hiện, không đổi về
+     sau — frame-locked-at hiển thị rõ thời điểm đã chốt để người xem biết đây
+     là 1 ảnh chụp, không phải số liệu cập nhật liên tục. ---- */
+  .frame-section + .frame-section {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--gridline);
+  }
+  .frame-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .frame-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .frame-badge.full { background: var(--gridline); color: var(--text-primary); }
+  .frame-badge.live { background: var(--loss-text); color: #fff; }
+  .frame-locked-at {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .live-frame {
+    background: var(--page-plane);
+    border: 1px solid var(--loss-text);
+    border-radius: 10px;
+    padding: 12px;
+  }
 
   .match-odds-grid {
     display: grid;
@@ -650,7 +700,9 @@
       Nguồn dữ liệu: <a href="https://the-odds-api.com/" target="_blank" rel="noopener">The Odds API</a> (trận sắp diễn ra),
       <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a> (theo mùa giải &amp; dữ liệu huấn luyện 2022-2024)
       và <a href="https://www.football-data.org/" target="_blank" rel="noopener">football-data.org</a> (phong độ &amp; đối đầu mùa hiện tại).
-      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024. "Phân tích phong độ &amp; đối đầu" hiển thị trực tiếp số liệu bàn thắng/thua gần đây + lịch sử đối đầu, kết hợp kèo chấp châu Á để ước tính 3 tỉ số khả dĩ nhất (mô hình Poisson). "Đồng thuận" là trung bình cộng của "Dự đoán ML" và "Phân tích phong độ &amp; đối đầu" — khi 2 nguồn này nghiêng về cùng 1 đội, chỉ số đồng thuận đáng tin hơn; khi trái chiều, app sẽ nói rõ để bạn thận trọng. Tất cả chỉ mang tính tham khảo, không phải lời khuyên cá cược.
+      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024. "Phân tích phong độ &amp; đối đầu" hiển thị trực tiếp số liệu bàn thắng/thua gần đây + lịch sử đối đầu, kết hợp kèo chấp châu Á để ước tính 3 tỉ số khả dĩ nhất (mô hình Poisson). "Đồng thuận" là trung bình cộng của "Dự đoán ML" và "Phân tích phong độ &amp; đối đầu" — khi 2 nguồn này nghiêng về cùng 1 đội, chỉ số đồng thuận đáng tin hơn; khi trái chiều, app sẽ nói rõ để bạn thận trọng. Mỗi trận có khung "Cả trận" (luôn có) và khung "Hiện tại (Live)" (chỉ xuất hiện khi trận đã bắt đầu diễn ra) — cả 2 khung đều được <strong>chốt (khoá) ngay lần đầu xuất hiện và không đổi về sau</strong>, kể cả khi kèo/phong độ cập nhật tiếp. Tất cả chỉ mang tính tham khảo, không phải lời khuyên cá cược.
+      <br/><br/>
+      <a href="/api/frame-snapshots/download" id="frame-snapshots-download-link">Tải về dữ liệu các khung đã chốt (backup)</a>
     </footer>
   </main>
 

@@ -118,7 +118,7 @@ async function loadUpcoming() {
     state.upcomingMatches = res.matches || [];
     renderTable();
 
-    const withOdds = state.upcomingMatches.filter((m) => m.odds).length;
+    const withOdds = state.upcomingMatches.filter((m) => m.frames?.full?.odds).length;
     setStatus(
       `${state.upcomingMatches.length} trận sắp diễn ra · ${withOdds} trận có kèo · cập nhật ${new Date().toLocaleTimeString('vi-VN')}`
     );
@@ -142,8 +142,8 @@ function renderUpcomingTable() {
   }
 
   const total = state.upcomingMatches.length;
-  const withOdds = state.upcomingMatches.filter((m) => m.odds).length;
-  const withPrediction = state.upcomingMatches.filter((m) => m.prediction).length;
+  const withOdds = state.upcomingMatches.filter((m) => m.frames?.full?.odds).length;
+  const withPrediction = state.upcomingMatches.filter((m) => m.frames?.full?.prediction).length;
   tileTotal.textContent = total;
   tileUpcoming.textContent = total;
   tileWithOdds.textContent = withOdds;
@@ -158,64 +158,107 @@ function renderUpcomingTable() {
   tableWrap.innerHTML = `<div class="match-list">${cards}</div>`;
 }
 
+// Mỗi trận có 1 khung "Cả trận" (luôn có) và tối đa 1 khung "Hiện tại (Live)"
+// (chỉ xuất hiện khi trận đã bắt đầu diễn ra) — xem src/ml/frameSnapshots.js.
+// CẢ 2 khung đều đã được backend "CHỐT" (khoá) ngay từ lần đầu xuất hiện,
+// không đổi theo biến động kèo/phong độ về sau — vì vậy mỗi khung tự hiển thị
+// thời điểm đã chốt (`lockedAt`) để người xem biết đây là ảnh chụp tại 1 thời
+// điểm cụ thể, không phải số liệu "sống" cập nhật liên tục.
 function renderMatchCard(m) {
-  const oddsValue = m.odds
-    ? `${m.odds.home} / ${m.odds.draw} / ${m.odds.away}<div class="status-badge">${escapeHtml(m.odds.bookmaker)}</div>`
-    : '<span class="status-badge">Chưa có kèo</span>';
+  const full = m.frames?.full;
+  const live = m.frames?.live;
 
-  const handicapValue = m.asianHandicap
-    ? `${escapeHtml(m.homeTeam)} ${fmtPoint(m.asianHandicap.homePoint)} @ ${m.asianHandicap.homeOdd}<br/>` +
-      `${escapeHtml(m.awayTeam)} ${fmtPoint(m.asianHandicap.awayPoint)} @ ${m.asianHandicap.awayOdd}` +
-      `<div class="status-badge">${escapeHtml(m.asianHandicap.bookmaker)}</div>`
-    : '<span class="status-badge">Chưa có kèo châu Á</span>';
+  const fullSection = full
+    ? `
+      <div class="frame-section">
+        <div class="frame-label">
+          <span class="frame-badge full">📌 Cả trận</span>
+          <span class="frame-locked-at">Chốt lúc ${fmtDate(full.lockedAt)}</span>
+        </div>
+        ${renderOddsGrid(full, m.homeTeam, m.awayTeam)}
+        ${renderAnalysisPanel(full)}
+        ${renderConsensusPanel(full)}
+        ${renderMlPanel(full)}
+        ${renderStatsPanel(full)}
+      </div>
+    `
+    : '';
 
-  const totalsValue = m.totals
-    ? `Mức ${m.totals.point} bàn<br/>Tài @ ${m.totals.overOdd} / Xỉu @ ${m.totals.underOdd}` +
-      `<div class="status-badge">${escapeHtml(m.totals.bookmaker)}</div>`
-    : '<span class="status-badge">Chưa có kèo tài xỉu</span>';
+  const liveSection = live
+    ? `
+      <div class="frame-section live-frame">
+        <div class="frame-label">
+          <span class="frame-badge live">🔴 Hiện tại (Live)</span>
+          <span class="frame-locked-at">Chốt lúc ${fmtDate(live.lockedAt)} (ngay khi trận bắt đầu)</span>
+        </div>
+        ${renderOddsGrid(live, m.homeTeam, m.awayTeam)}
+        ${renderAnalysisPanel(live)}
+        ${renderConsensusPanel(live)}
+        ${renderMlPanel(live)}
+        ${renderStatsPanel(live)}
+      </div>
+    `
+    : '';
 
   return `
     <div class="match-card">
       <div class="match-card-head">
-        <div class="teams">${escapeHtml(m.homeTeam)} vs ${escapeHtml(m.awayTeam)}</div>
+        <div class="teams">${escapeHtml(m.homeTeam)} vs ${escapeHtml(m.awayTeam)}${m.isLive ? '<span class="live-indicator">● ĐANG DIỄN RA</span>' : ''}</div>
         <div class="num">${fmtDate(m.commenceTime)}</div>
       </div>
 
-      <div class="match-odds-grid">
-        <div class="odds-block">
-          <div class="odds-block-label">Kèo 1X2 (Chủ / Hòa / Khách)</div>
-          <div class="odds-block-value">${oddsValue}</div>
-        </div>
-        <div class="odds-block">
-          <div class="odds-block-label">Kèo châu Á (Handicap)</div>
-          <div class="odds-block-value">${handicapValue}</div>
-        </div>
-        <div class="odds-block">
-          <div class="odds-block-label">Kèo tài xỉu (Over/Under)</div>
-          <div class="odds-block-value">${totalsValue}</div>
-        </div>
-      </div>
-
-      ${renderAnalysisPanel(m)}
-      ${renderConsensusPanel(m)}
-      ${renderMlPanel(m)}
-      ${renderStatsPanel(m)}
+      ${fullSection}
+      ${liveSection}
     </div>
   `;
 }
 
-function renderAnalysisPanel(m) {
-  if (!m.prediction && !m.analysis) {
+function renderOddsGrid(frame, homeTeam, awayTeam) {
+  const oddsValue = frame.odds
+    ? `${frame.odds.home} / ${frame.odds.draw} / ${frame.odds.away}<div class="status-badge">${escapeHtml(frame.odds.bookmaker)}</div>`
+    : '<span class="status-badge">Chưa có kèo</span>';
+
+  const handicapValue = frame.asianHandicap
+    ? `${escapeHtml(homeTeam)} ${fmtPoint(frame.asianHandicap.homePoint)} @ ${frame.asianHandicap.homeOdd}<br/>` +
+      `${escapeHtml(awayTeam)} ${fmtPoint(frame.asianHandicap.awayPoint)} @ ${frame.asianHandicap.awayOdd}` +
+      `<div class="status-badge">${escapeHtml(frame.asianHandicap.bookmaker)}</div>`
+    : '<span class="status-badge">Chưa có kèo châu Á</span>';
+
+  const totalsValue = frame.totals
+    ? `Mức ${frame.totals.point} bàn<br/>Tài @ ${frame.totals.overOdd} / Xỉu @ ${frame.totals.underOdd}` +
+      `<div class="status-badge">${escapeHtml(frame.totals.bookmaker)}</div>`
+    : '<span class="status-badge">Chưa có kèo tài xỉu</span>';
+
+  return `
+    <div class="match-odds-grid">
+      <div class="odds-block">
+        <div class="odds-block-label">Kèo 1X2 (Chủ / Hòa / Khách)</div>
+        <div class="odds-block-value">${oddsValue}</div>
+      </div>
+      <div class="odds-block">
+        <div class="odds-block-label">Kèo châu Á (Handicap)</div>
+        <div class="odds-block-value">${handicapValue}</div>
+      </div>
+      <div class="odds-block">
+        <div class="odds-block-label">Kèo tài xỉu (Over/Under)</div>
+        <div class="odds-block-value">${totalsValue}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAnalysisPanel(frame) {
+  if (!frame.prediction && !frame.analysis) {
     return '<div class="analysis-panel"><span class="status-badge">Chưa đủ dữ liệu để phân tích</span></div>';
   }
 
-  const meterHtml = m.prediction ? renderMeter(m.prediction) : '';
-  const scoreBadge = m.analysis?.suggestedScore
-    ? `<span class="analysis-score-badge">Tỉ số gợi ý: ${m.analysis.suggestedScore.home} - ${m.analysis.suggestedScore.away}</span>`
+  const meterHtml = frame.prediction ? renderMeter(frame.prediction) : '';
+  const scoreBadge = frame.analysis?.suggestedScore
+    ? `<span class="analysis-score-badge">Tỉ số gợi ý: ${frame.analysis.suggestedScore.home} - ${frame.analysis.suggestedScore.away}</span>`
     : '';
   const notesHtml =
-    m.analysis?.notes?.length > 0
-      ? `<ul class="analysis-notes">${m.analysis.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
+    frame.analysis?.notes?.length > 0
+      ? `<ul class="analysis-notes">${frame.analysis.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
       : '';
 
   return `
@@ -239,8 +282,8 @@ const AGREEMENT_LABELS = {
   agree: 'Đồng thuận',
   disagree: 'Trái chiều',
 };
-function renderConsensusPanel(m) {
-  const c = m.consensus;
+function renderConsensusPanel(frame) {
+  const c = frame.consensus;
   if (!c) return '';
 
   if (!c.available) {
@@ -274,8 +317,8 @@ function renderConsensusPanel(m) {
 // "Dự đoán ML" — kết quả từ mô hình học máy (hồi quy logistic) huấn luyện từ
 // dữ liệu lịch sử 2022-2024, dùng phong độ + đối đầu MÙA HIỆN TẠI (football-data.org)
 // để dự đoán. Khác với "Dự đoán BD" ở trên (chỉ tính từ tỉ lệ kèo tức thời).
-function renderMlPanel(m) {
-  const ml = m.mlPrediction;
+function renderMlPanel(frame) {
+  const ml = frame.mlPrediction;
   if (!ml) return '';
 
   if (!ml.available) {
@@ -351,8 +394,8 @@ function renderH2HList(h2h, homeTeam) {
   return `<ul class="stats-match-list">${items}</ul>`;
 }
 
-function renderStatsPanel(m) {
-  const sp = m.statsPanel;
+function renderStatsPanel(frame) {
+  const sp = frame.statsPanel;
   if (!sp) return '';
 
   if (!sp.available) {
