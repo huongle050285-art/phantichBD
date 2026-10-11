@@ -25,6 +25,9 @@ const tileUpcoming = document.getElementById('tile-upcoming');
 const tileWithOdds = document.getElementById('tile-with-odds');
 const tilePredictions = document.getElementById('tile-predictions');
 
+const ledgerWrap = document.getElementById('ledger-wrap');
+const ledgerDownloadBtn = document.getElementById('ledger-download-btn');
+
 const MODE_HINTS = {
   upcoming:
     'Các trận sắp diễn ra mùa hiện tại (nguồn: The Odds API). "Dự đoán" ở đây được tính trực tiếp từ tỉ lệ kèo (implied probability), không phải mô hình AI riêng.',
@@ -388,6 +391,7 @@ function renderStatsPanel(m) {
         ${renderH2HList(sp.h2h, sp.homeTeam)}
       </div>
       ${sp.notes?.length ? `<ul class="stats-verdict-notes">${sp.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>` : ''}
+      ${sp.verdict ? `<div class="verdict-line"><span class="verdict-label">Chốt kèo:</span> <span class="verdict-value">${escapeHtml(sp.verdict.label)}</span></div>` : ''}
       <div class="stats-h2h-title">3 tỉ số có khả năng xảy ra cao nhất</div>
       ${scorelineChips}
     </div>
@@ -547,6 +551,86 @@ function applyMode(mode) {
   }
 }
 
+// ---- "Bảng sao kê dự đoán" — lịch sử chốt kèo + 3 tỉ số dự đoán, trúng/trật ----
+async function loadLedger() {
+  try {
+    const res = await fetchJson('/api/predictions-log');
+    renderLedgerTable(res.entries || []);
+  } catch (err) {
+    ledgerWrap.innerHTML = `<div class="error">Không tải được bảng sao kê: ${escapeHtml(err.message)}</div>`;
+  }
+}
+
+function renderLedgerScorelines(entry) {
+  return `
+    <div class="ledger-scorelines">
+      ${entry.topScorelines
+        .map((s, idx) => {
+          const isHit = entry.status === 'resolved' && entry.scorelineHitIndex === idx;
+          return `<span class="ledger-scoreline${isHit ? ' hit' : ''}">${s.home}-${s.away}<span style="opacity:.65">${s.probabilityPct}%</span></span>`;
+        })
+        .join('')}
+    </div>
+  `;
+}
+
+function renderLedgerStatus(entry) {
+  if (entry.status !== 'resolved') {
+    return '<span class="ledger-status pending">Đang chờ</span>';
+  }
+  const verdictBadge = entry.verdictCorrect
+    ? '<span class="ledger-status hit-status">Đúng chốt kèo</span>'
+    : '<span class="ledger-status miss-status">Sai chốt kèo</span>';
+  const scoreBadge =
+    entry.scorelineHitIndex >= 0
+      ? '<span class="ledger-status hit-status">Đúng tỉ số!</span>'
+      : '';
+  return `${verdictBadge} ${scoreBadge}`;
+}
+
+function renderLedgerTable(entries) {
+  if (!entries.length) {
+    ledgerWrap.innerHTML =
+      '<div class="ledger-empty">Chưa có dự đoán nào được ghi lại. Mỗi trận sẽ tự động được thêm vào đây khi lần đầu xuất hiện ở "Trận sắp diễn ra".</div>';
+    return;
+  }
+
+  const rows = entries
+    .map(
+      (e) => `
+        <tr>
+          <td class="teams">${escapeHtml(e.homeTeam)} vs ${escapeHtml(e.awayTeam)}</td>
+          <td class="num">${fmtDate(e.commenceTime)}</td>
+          <td>${escapeHtml(e.verdictLabel)}</td>
+          <td>${renderLedgerScorelines(e)}</td>
+          <td class="num">${e.status === 'resolved' ? `${e.actualHomeGoals}-${e.actualAwayGoals}` : '<span class="status-badge">Chưa đá</span>'}</td>
+          <td>${renderLedgerStatus(e)}</td>
+        </tr>
+      `
+    )
+    .join('');
+
+  ledgerWrap.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Trận đấu</th>
+          <th>Ngày đá</th>
+          <th>Chốt kèo</th>
+          <th>3 tỉ số dự đoán</th>
+          <th>Kết quả thật</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+ledgerDownloadBtn.addEventListener('click', () => {
+  window.location.href = '/api/predictions-log/download';
+});
+
 async function init() {
   try {
     const health = await fetchJson('/api/health');
@@ -558,6 +642,7 @@ async function init() {
       .join('');
 
     applyMode(modeSelect.value);
+    loadLedger();
   } catch (err) {
     tableWrap.innerHTML = `<div class="error">Không kết nối được tới server: ${escapeHtml(err.message)}</div>`;
   }
@@ -565,6 +650,9 @@ async function init() {
 
 modeSelect.addEventListener('change', () => applyMode(modeSelect.value));
 seasonSelect.addEventListener('change', () => loadSeasonData(Number(seasonSelect.value)));
-refreshBtn.addEventListener('click', () => applyMode(modeSelect.value));
+refreshBtn.addEventListener('click', () => {
+  applyMode(modeSelect.value);
+  loadLedger();
+});
 
 init();
