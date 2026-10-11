@@ -19,6 +19,7 @@
     --series-away:    #eb6834; /* categorical slot 2 - orange */
     --series-draw:    #898781; /* neutral ink, not a hued category (tie state) */
     --success-text:   #006300;
+    --loss-text:      #b3261e;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -35,6 +36,7 @@
       --series-away:    #d95926;
       --series-draw:    #898781; /* neutral ink, not a hued category (tie state) */
       --success-text:   #0ca30c;
+      --loss-text:      #ff6b61;
     }
   }
 
@@ -347,6 +349,114 @@
     font-style: italic;
   }
 
+  /* ---- Khối "Phân tích phong độ & đối đầu" ---- */
+  .stats-panel {
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+  }
+  .stats-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+  .stats-teams-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .stats-team-col {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .stats-team-name {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .stats-form-badges {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .form-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .form-badge.W { background: var(--success-text); }
+  .form-badge.D { background: var(--series-draw); }
+  .form-badge.L { background: var(--loss-text); }
+  .stats-match-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .stats-match-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .stats-empty-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .stats-h2h {
+    margin-bottom: 10px;
+  }
+  .stats-h2h-title {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .stats-verdict-notes {
+    margin: 0 0 10px;
+    padding-left: 18px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .scoreline-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .scoreline-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 11px;
+    font-size: 12px;
+  }
+  .scoreline-chip .score {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .scoreline-chip .pct {
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
   .empty, .error, .loading {
     padding: 40px 20px;
     text-align: center;
@@ -421,7 +531,7 @@
       Nguồn dữ liệu: <a href="https://the-odds-api.com/" target="_blank" rel="noopener">The Odds API</a> (trận sắp diễn ra),
       <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a> (theo mùa giải &amp; dữ liệu huấn luyện 2022-2024)
       và <a href="https://www.football-data.org/" target="_blank" rel="noopener">football-data.org</a> (phong độ &amp; đối đầu mùa hiện tại).
-      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024 để học mối liên hệ giữa phong độ/đối đầu và kết quả — độ chính xác thật hiển thị ngay trong khối dự đoán. Cả 2 chỉ mang tính tham khảo, không phải lời khuyên cá cược.
+      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024. "Phân tích phong độ &amp; đối đầu" hiển thị trực tiếp số liệu bàn thắng/thua gần đây + lịch sử đối đầu, kết hợp kèo chấp châu Á để ước tính 3 tỉ số khả dĩ nhất (mô hình Poisson). Tất cả chỉ mang tính tham khảo, không phải lời khuyên cá cược.
     </footer>
   </main>
 

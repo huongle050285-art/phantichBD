@@ -56,6 +56,11 @@ function fmtDate(iso) {
   });
 }
 
+function fmtDateShort(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' });
+}
+
 // Tìm kèo 1X2 (Match Winner) từ bookmaker đầu tiên có sẵn cho 1 trận (dữ liệu API-Football)
 function extractMatchWinnerOdds(oddsEntry) {
   if (!oddsEntry || !oddsEntry.bookmakers?.length) return null;
@@ -190,6 +195,34 @@ function renderMatchCard(m) {
 
       ${renderAnalysisPanel(m)}
       ${renderMlPanel(m)}
+      ${renderStatsPanel(m)}
+    </div>
+  `;
+}
+
+function renderAnalysisPanel(m) {
+  if (!m.prediction && !m.analysis) {
+    return '<div class="analysis-panel"><span class="status-badge">Chưa đủ dữ liệu để phân tích</span></div>';
+  }
+
+  const meterHtml = m.prediction ? renderMeter(m.prediction) : '';
+  const scoreBadge = m.analysis?.suggestedScore
+    ? `<span class="analysis-score-badge">Tỉ số gợi ý: ${m.analysis.suggestedScore.home} - ${m.analysis.suggestedScore.away}</span>`
+    : '';
+  const notesHtml =
+    m.analysis?.notes?.length > 0
+      ? `<ul class="analysis-notes">${m.analysis.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
+      : '';
+
+  return `
+    <div class="analysis-panel">
+      <div class="analysis-header">
+        <span class="analysis-title">Dự đoán BD</span>
+        ${meterHtml}
+      </div>
+      ${scoreBadge}
+      ${notesHtml}
+      <div class="analysis-disclaimer">Tính từ tỉ lệ kèo hiện có, chỉ mang tính tham khảo — không phải lời khuyên cá cược.</div>
     </div>
   `;
 }
@@ -237,29 +270,85 @@ function renderMlPanel(m) {
   `;
 }
 
-function renderAnalysisPanel(m) {
-  if (!m.prediction && !m.analysis) {
-    return '<div class="analysis-panel"><span class="status-badge">Chưa đủ dữ liệu để phân tích</span></div>';
+// "Phân tích phong độ & đối đầu" — số liệu THÔ (bàn thắng/thua từng trận gần
+// đây, lịch sử đối đầu), kết hợp kèo chấp châu Á để ước tính 3 tỉ số khả dĩ
+// nhất (mô hình Poisson, xem src/ml/scoreProjection.mjs ở backend).
+function renderFormBadges(recentMatches) {
+  if (!recentMatches || recentMatches.length === 0) {
+    return '<span class="stats-empty-note">Chưa có trận nào mùa này.</span>';
+  }
+  // recentMatches đã sắp xếp gần nhất trước -> đảo lại để đọc trái sang phải theo thời gian
+  const ordered = recentMatches.slice().reverse();
+  const badges = ordered
+    .map((r) => `<span class="form-badge ${r.result}" title="${fmtDateShort(r.date)}: ${r.goalsFor}-${r.goalsAgainst} vs ${escapeHtml(r.opponent)}">${r.result}</span>`)
+    .join('');
+  const list = recentMatches
+    .map(
+      (r) =>
+        `<li><span>${fmtDateShort(r.date)} ${r.venue === 'home' ? 'vs' : '@'} ${escapeHtml(r.opponent)}</span><span class="num">${r.goalsFor}-${r.goalsAgainst}</span></li>`
+    )
+    .join('');
+  return `
+    <div class="stats-form-badges">${badges}</div>
+    <ul class="stats-match-list">${list}</ul>
+  `;
+}
+
+function renderH2HList(h2h, homeTeam) {
+  if (!h2h || h2h.length === 0) {
+    return '<span class="stats-empty-note">Chưa tìm thấy lần đối đầu nào gần đây.</span>';
+  }
+  const items = h2h
+    .map((m) => {
+      const isHomeTeamHome = m.homeTeam === homeTeam;
+      return `<li><span>${fmtDateShort(m.date)} ${escapeHtml(m.homeTeam)} ${isHomeTeamHome ? '(sân nhà)' : ''}</span><span class="num">${m.homeGoals}-${m.awayGoals}</span></li>`;
+    })
+    .join('');
+  return `<ul class="stats-match-list">${items}</ul>`;
+}
+
+function renderStatsPanel(m) {
+  const sp = m.statsPanel;
+  if (!sp) return '';
+
+  if (!sp.available) {
+    return `
+      <div class="stats-panel">
+        <div class="stats-title">Phân tích phong độ &amp; đối đầu</div>
+        <div class="stats-empty-note">Chưa đủ dữ liệu: ${escapeHtml(sp.reason || 'không xác định.')}</div>
+      </div>
+    `;
   }
 
-  const meterHtml = m.prediction ? renderMeter(m.prediction) : '';
-  const scoreBadge = m.analysis?.suggestedScore
-    ? `<span class="analysis-score-badge">Tỉ số gợi ý: ${m.analysis.suggestedScore.home} - ${m.analysis.suggestedScore.away}</span>`
-    : '';
-  const notesHtml =
-    m.analysis?.notes?.length > 0
-      ? `<ul class="analysis-notes">${m.analysis.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>`
-      : '';
+  const scorelineChips = sp.topScorelines?.length
+    ? `<div class="scoreline-chips">${sp.topScorelines
+        .map(
+          (s) =>
+            `<span class="scoreline-chip"><span class="score">${s.home}-${s.away}</span><span class="pct">${s.probabilityPct}%</span></span>`
+        )
+        .join('')}</div>`
+    : '<span class="stats-empty-note">Chưa đủ dữ liệu để ước tính tỉ số.</span>';
 
   return `
-    <div class="analysis-panel">
-      <div class="analysis-header">
-        <span class="analysis-title">Dự đoán BD</span>
-        ${meterHtml}
+    <div class="stats-panel">
+      <div class="stats-title">Phân tích phong độ &amp; đối đầu</div>
+      <div class="stats-teams-grid">
+        <div class="stats-team-col">
+          <div class="stats-team-name">${escapeHtml(sp.homeTeam)} (sân nhà)</div>
+          ${renderFormBadges(sp.homeRecent)}
+        </div>
+        <div class="stats-team-col">
+          <div class="stats-team-name">${escapeHtml(sp.awayTeam)} (sân khách)</div>
+          ${renderFormBadges(sp.awayRecent)}
+        </div>
       </div>
-      ${scoreBadge}
-      ${notesHtml}
-      <div class="analysis-disclaimer">Tính từ tỉ lệ kèo hiện có, chỉ mang tính tham khảo — không phải lời khuyên cá cược.</div>
+      <div class="stats-h2h">
+        <div class="stats-h2h-title">Lịch sử đối đầu gần đây</div>
+        ${renderH2HList(sp.h2h, sp.homeTeam)}
+      </div>
+      ${sp.notes?.length ? `<ul class="stats-verdict-notes">${sp.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join('')}</ul>` : ''}
+      <div class="stats-h2h-title">3 tỉ số có khả năng xảy ra cao nhất</div>
+      ${scorelineChips}
     </div>
   `;
 }
