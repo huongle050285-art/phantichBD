@@ -194,6 +194,7 @@ function renderMatchCard(m) {
       </div>
 
       ${renderAnalysisPanel(m)}
+      ${renderConsensusPanel(m)}
       ${renderMlPanel(m)}
       ${renderStatsPanel(m)}
     </div>
@@ -223,6 +224,46 @@ function renderAnalysisPanel(m) {
       ${scoreBadge}
       ${notesHtml}
       <div class="analysis-disclaimer">Tính từ tỉ lệ kèo hiện có, chỉ mang tính tham khảo — không phải lời khuyên cá cược.</div>
+    </div>
+  `;
+}
+
+// "Đồng thuận" — trung bình cộng của "Dự đoán ML" (mô hình đã học) và "Phân
+// tích phong độ & đối đầu" (thống kê Poisson, có kèo chấp). Không tính toán gì
+// mới, chỉ gộp 2 kết quả backend đã tính sẵn (m.consensus, xem src/ml/consensus.js).
+const AGREEMENT_LABELS = {
+  'strong-agree': 'Đồng thuận mạnh',
+  agree: 'Đồng thuận',
+  disagree: 'Trái chiều',
+};
+function renderConsensusPanel(m) {
+  const c = m.consensus;
+  if (!c) return '';
+
+  if (!c.available) {
+    return `
+      <div class="consensus-panel">
+        <div class="consensus-header">
+          <span class="consensus-title">Đồng thuận (ML + Thống kê)</span>
+          <span class="consensus-badge single-source">Chưa đủ dữ liệu</span>
+        </div>
+        <div class="consensus-note">${escapeHtml(c.reason || 'Không xác định.')}</div>
+      </div>
+    `;
+  }
+
+  const meterHtml = renderMeter({ home: c.homeWinProb, draw: c.drawProb, away: c.awayWinProb });
+  const badgeClass = c.source === 'both' ? c.agreement : 'single-source';
+  const badgeLabel = c.source === 'both' ? AGREEMENT_LABELS[c.agreement] : 'Chỉ 1 nguồn';
+
+  return `
+    <div class="consensus-panel">
+      <div class="consensus-header">
+        <span class="consensus-title">Đồng thuận (ML + Thống kê)</span>
+        <span class="consensus-badge ${badgeClass}">${badgeLabel}</span>
+      </div>
+      ${meterHtml}
+      <div class="consensus-note">${escapeHtml(c.note || '')}</div>
     </div>
   `;
 }

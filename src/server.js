@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { getFinishedMatchesCached, isFootballDataConfigured } from './services/footballData.js';
 import { predictMatch } from './ml/predict.js';
 import { buildMatchStatsPanel } from './ml/matchAnalysis.js';
+import { buildConsensus } from './ml/consensus.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -331,6 +332,15 @@ async function getUpcomingMatchesCached() {
         })
       : { available: false, reason: currentSeasonMatchesError || 'Chưa có dữ liệu mùa hiện tại.' };
 
+    // "Đồng thuận" — gộp mlPrediction + statsPanel (vừa tính ở trên) thành 1
+    // chỉ số duy nhất, không gọi lại API hay tính toán lại gì nặng.
+    const consensus = buildConsensus({
+      mlPrediction,
+      statsPanel,
+      homeTeam: ev.home_team,
+      awayTeam: ev.away_team,
+    });
+
     return {
       id: ev.id,
       commenceTime: ev.commence_time,
@@ -343,6 +353,7 @@ async function getUpcomingMatchesCached() {
       analysis,
       mlPrediction,
       statsPanel,
+      consensus,
     };
   });
 

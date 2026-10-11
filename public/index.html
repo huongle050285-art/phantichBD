@@ -349,6 +349,46 @@
     font-style: italic;
   }
 
+  /* ---- Khối "Đồng thuận" (gộp Dự đoán ML + Phân tích phong độ & đối đầu) ---- */
+  .consensus-panel {
+    background: var(--surface-1);
+    border: 1.5px solid var(--series-home);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+  }
+  .consensus-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .consensus-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .consensus-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-radius: 999px;
+    padding: 2px 9px;
+  }
+  .consensus-badge.strong-agree { background: var(--success-text); color: #fff; }
+  .consensus-badge.agree { background: var(--series-home); color: #fff; }
+  .consensus-badge.disagree { background: var(--loss-text); color: #fff; }
+  .consensus-badge.single-source { background: var(--gridline); color: var(--text-secondary); }
+  .consensus-note {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
   /* ---- Khối "Phân tích phong độ & đối đầu" ---- */
   .stats-panel {
     background: var(--page-plane);
@@ -531,7 +571,7 @@
       Nguồn dữ liệu: <a href="https://the-odds-api.com/" target="_blank" rel="noopener">The Odds API</a> (trận sắp diễn ra),
       <a href="https://www.api-football.com/" target="_blank" rel="noopener">API-Football</a> (theo mùa giải &amp; dữ liệu huấn luyện 2022-2024)
       và <a href="https://www.football-data.org/" target="_blank" rel="noopener">football-data.org</a> (phong độ &amp; đối đầu mùa hiện tại).
-      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024. "Phân tích phong độ &amp; đối đầu" hiển thị trực tiếp số liệu bàn thắng/thua gần đây + lịch sử đối đầu, kết hợp kèo chấp châu Á để ước tính 3 tỉ số khả dĩ nhất (mô hình Poisson). Tất cả chỉ mang tính tham khảo, không phải lời khuyên cá cược.
+      "Dự đoán BD" là bộ quy tắc thống kê tự tính từ tỉ lệ kèo (1X2 + châu Á + tài xỉu). "Dự đoán ML" (beta) là 1 mô hình học máy nhỏ (hồi quy logistic), được huấn luyện thật từ ~1000 trận đấu lịch sử 2022-2024. "Phân tích phong độ &amp; đối đầu" hiển thị trực tiếp số liệu bàn thắng/thua gần đây + lịch sử đối đầu, kết hợp kèo chấp châu Á để ước tính 3 tỉ số khả dĩ nhất (mô hình Poisson). "Đồng thuận" là trung bình cộng của "Dự đoán ML" và "Phân tích phong độ &amp; đối đầu" — khi 2 nguồn này nghiêng về cùng 1 đội, chỉ số đồng thuận đáng tin hơn; khi trái chiều, app sẽ nói rõ để bạn thận trọng. Tất cả chỉ mang tính tham khảo, không phải lời khuyên cá cược.
     </footer>
   </main>
 

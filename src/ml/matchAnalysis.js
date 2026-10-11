@@ -81,6 +81,10 @@ export function buildMatchStatsPanel({ matches, homeTeamRaw, awayTeamRaw, matchT
     h2h,
     favoriteTeam,
     topScorelines: projection.topScorelines,
+    // % thắng/hòa/thua suy ra từ cùng mô hình Poisson dùng để chọn 3 tỉ số ở
+    // trên — phơi ra riêng để src/ml/consensus.js có thể gộp với "Dự đoán ML"
+    // thành 1 chỉ số đồng thuận, không cần tính lại.
+    winDrawAway: { home: projection.homeWinProb, draw: projection.drawProb, away: projection.awayWinProb },
     notes,
     hasCurrentSeasonData: homeRecent.length > 0 || awayRecent.length > 0 || h2h.length > 0,
   };
