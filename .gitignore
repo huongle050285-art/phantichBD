@@ -11,3 +11,8 @@ data/predictions.json
 # do tương tự — nhưng khác model.json, file này được server tự ghi thêm liên
 # tục khi app đang chạy, nên cần tải về (nút "Tải về sao kê" trong app) rồi
 # ghi đè lại trước mỗi lần deploy code mới, nếu không muốn mất lịch sử cũ.
+#
+# data/frame-snapshots.json ("Cả trận"/"Hiện tại (Live)" đã chốt) — y hệt lý
+# do trên: cần tải về (link "Tải về dữ liệu các khung đã chốt" ở footer) rồi
+# ghi đè lại trước mỗi lần deploy code mới, nếu không các khung sẽ bị chốt lại
+# từ đầu (mất timestamp + nội dung gốc đã khoá trước đó).
