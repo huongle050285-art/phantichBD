@@ -12,6 +12,24 @@ function fmtPoint(p) {
   return n > 0 ? `+${n}` : `${n}`;
 }
 
+// "Chốt kèo" — 1 dòng ngắn gọn, nổi bật, đặt NGAY PHÍA TRÊN danh sách 3 tỉ số
+// dự đoán, trả lời thẳng câu hỏi "đội nào sẽ thắng?" (hoặc "Hòa" nếu xác suất
+// hòa cao nhất trong 3 khả năng) — khác với `favoriteTeam` ở buildVerdictNotes
+// bên dưới (chỉ so sánh chủ/khách, bỏ qua khả năng hòa, dùng cho câu nhận định
+// dài trong danh sách `notes`).
+function computeVerdict({ homeTeam, awayTeam, homeWinProb, drawProb, awayWinProb }) {
+  let side;
+  if (homeWinProb >= drawProb && homeWinProb >= awayWinProb) side = 'home';
+  else if (awayWinProb >= drawProb && awayWinProb >= homeWinProb) side = 'away';
+  else side = 'draw';
+
+  const team = side === 'home' ? homeTeam : side === 'away' ? awayTeam : null;
+  const prob = side === 'home' ? homeWinProb : side === 'away' ? awayWinProb : drawProb;
+  const label = side === 'draw' ? `Hòa (${prob}%)` : `${team} thắng (${prob}%)`;
+
+  return { side, team, prob, label };
+}
+
 function buildVerdictNotes({ homeTeam, awayTeam, homeHomeForm, awayAwayForm, asianHandicap, homeWinProb, awayWinProb }) {
   const notes = [];
 
@@ -72,6 +90,14 @@ export function buildMatchStatsPanel({ matches, homeTeamRaw, awayTeamRaw, matchT
     awayWinProb: projection.awayWinProb,
   });
 
+  const verdict = computeVerdict({
+    homeTeam,
+    awayTeam,
+    homeWinProb: projection.homeWinProb,
+    drawProb: projection.drawProb,
+    awayWinProb: projection.awayWinProb,
+  });
+
   return {
     available: true,
     homeTeam,
@@ -80,6 +106,10 @@ export function buildMatchStatsPanel({ matches, homeTeamRaw, awayTeamRaw, matchT
     awayRecent,
     h2h,
     favoriteTeam,
+    // "Chốt kèo" — hiển thị nổi bật ngay phía trên 3 tỉ số dự đoán, và cũng là
+    // giá trị được ghi vào "Bảng sao kê" (src/ml/predictionLog.js) để sau này
+    // đối chiếu trúng/trật khi trận đấu có kết quả thật.
+    verdict,
     topScorelines: projection.topScorelines,
     // % thắng/hòa/thua suy ra từ cùng mô hình Poisson dùng để chọn 3 tỉ số ở
     // trên — phơi ra riêng để src/ml/consensus.js có thể gộp với "Dự đoán ML"

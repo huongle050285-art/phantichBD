@@ -6,6 +6,7 @@ import { getFinishedMatchesCached, isFootballDataConfigured } from './services/f
 import { predictMatch } from './ml/predict.js';
 import { buildMatchStatsPanel } from './ml/matchAnalysis.js';
 import { buildConsensus } from './ml/consensus.js';
+import { recordPrediction, resolvePendingPredictions, getLog, getLogFilePath } from './ml/predictionLog.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -257,6 +258,12 @@ async function getUpcomingMatchesCached() {
     currentSeasonMatchesError = 'Chưa cấu hình FOOTBALL_DATA_KEY trong .env.';
   }
 
+  // Đối chiếu các dự đoán đã ghi trước đó ("Bảng sao kê") với kết quả thật —
+  // chạy ngay khi có currentSeasonMatches mới, không cần lịch chạy riêng.
+  if (currentSeasonMatches) {
+    resolvePendingPredictions(currentSeasonMatches);
+  }
+
   const matches = (events || []).map((ev) => {
     let odds = null;
     let prediction = null;
@@ -341,6 +348,19 @@ async function getUpcomingMatchesCached() {
       awayTeam: ev.away_team,
     });
 
+    // Ghi vào "Bảng sao kê" lần ĐẦU TIÊN trận này xuất hiện (recordPrediction tự
+    // bỏ qua nếu đã ghi rồi) — để sau này đối chiếu trúng/trật.
+    if (statsPanel.available && statsPanel.verdict) {
+      recordPrediction({
+        id: ev.id,
+        homeTeam: ev.home_team,
+        awayTeam: ev.away_team,
+        commenceTime: ev.commence_time,
+        verdict: statsPanel.verdict,
+        topScorelines: statsPanel.topScorelines,
+      });
+    }
+
     return {
       id: ev.id,
       commenceTime: ev.commence_time,
@@ -407,6 +427,29 @@ app.get('/api/upcoming', async (req, res) => {
   } catch (err) {
     res.status(502).json({ error: err.message });
   }
+});
+
+// "Bảng sao kê dự đoán" — toàn bộ lịch sử chốt kèo + 3 tỉ số đã dự đoán, kèm
+// trạng thái trúng/trật (nếu trận đã có kết quả). Xem src/ml/predictionLog.js.
+app.get('/api/predictions-log', (req, res) => {
+  try {
+    res.json({ entries: getLog() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Tải file data/predictions-log.json nguyên bản về máy — dùng để tự backup
+// định kỳ (vì ổ đĩa Render free bị xoá mỗi lần deploy code mới, xem ghi chú
+// trong src/ml/predictionLog.js), rồi kéo lên GitHub cùng đợt code mới nếu
+// muốn giữ lại lịch sử cũ.
+app.get('/api/predictions-log/download', (req, res) => {
+  const filePath = getLogFilePath();
+  res.download(filePath, 'predictions-log.json', (err) => {
+    if (err && !res.headersSent) {
+      res.status(404).json({ error: 'Chưa có dữ liệu sao kê nào được ghi lại.' });
+    }
+  });
 });
 
 // Lấy dự đoán cho 1 trận: /api/predictions/12345
