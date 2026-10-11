@@ -7,6 +7,7 @@ import { predictMatch } from './ml/predict.js';
 import { buildMatchStatsPanel } from './ml/matchAnalysis.js';
 import { buildConsensus } from './ml/consensus.js';
 import { recordPrediction, resolvePendingPredictions, getLog, getLogFilePath } from './ml/predictionLog.js';
+import { getOrLockSnapshot, getSnapshotFilePath } from './ml/frameSnapshots.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -264,7 +265,11 @@ async function getUpcomingMatchesCached() {
     resolvePendingPredictions(currentSeasonMatches);
   }
 
-  const matches = (events || []).map((ev) => {
+  // Tính TOÀN BỘ nội dung hiển thị (kèo + 4 khối dự đoán) cho 1 trận tại thời
+  // điểm gọi hàm — dùng để "chốt" (xem frameSnapshots.js) chứ KHÔNG gọi thêm
+  // API nào (tái dùng đúng `events`/`currentSeasonMatches` đã tải sẵn cho cả
+  // danh sách, phía trên).
+  function computeFramePayload(ev) {
     let odds = null;
     let prediction = null;
     let asianHandicap = null;
@@ -348,24 +353,10 @@ async function getUpcomingMatchesCached() {
       awayTeam: ev.away_team,
     });
 
-    // Ghi vào "Bảng sao kê" lần ĐẦU TIÊN trận này xuất hiện (recordPrediction tự
-    // bỏ qua nếu đã ghi rồi) — để sau này đối chiếu trúng/trật.
-    if (statsPanel.available && statsPanel.verdict) {
-      recordPrediction({
-        id: ev.id,
-        homeTeam: ev.home_team,
-        awayTeam: ev.away_team,
-        commenceTime: ev.commence_time,
-        verdict: statsPanel.verdict,
-        topScorelines: statsPanel.topScorelines,
-      });
-    }
-
     return {
-      id: ev.id,
-      commenceTime: ev.commence_time,
       homeTeam: ev.home_team,
       awayTeam: ev.away_team,
+      commenceTime: ev.commence_time,
       odds,
       asianHandicap,
       totals,
@@ -374,6 +365,44 @@ async function getUpcomingMatchesCached() {
       mlPrediction,
       statsPanel,
       consensus,
+    };
+  }
+
+  const matches = (events || []).map((ev) => {
+    const matchTime = new Date(ev.commence_time).getTime();
+    // The Odds API tự loại các trận đã đấu xong khỏi danh sách — nên hễ trận
+    // còn xuất hiện ở đây mà đã quá giờ bóng lăn thì chắc chắn đang live.
+    const isLive = matchTime <= Date.now();
+
+    // "full" — chốt ngay lần đầu trận xuất hiện, không đổi về sau dù kèo/phong
+    // độ có cập nhật tiếp. "live" — chốt thêm 1 lần nữa, riêng, ngay lần đầu
+    // phát hiện trận đã live (giữ nguyên bản "full" gốc, không đụng tới).
+    const fullFrame = getOrLockSnapshot(ev.id, 'full', () => computeFramePayload(ev));
+    const liveFrame = isLive ? getOrLockSnapshot(ev.id, 'live', () => computeFramePayload(ev)) : null;
+
+    // Ghi vào "Bảng sao kê" dựa trên khung "full" (không đổi theo thời gian,
+    // đúng với tinh thần ledger) — recordPrediction tự bỏ qua nếu đã ghi rồi.
+    if (fullFrame.statsPanel?.available && fullFrame.statsPanel?.verdict) {
+      recordPrediction({
+        id: ev.id,
+        homeTeam: fullFrame.homeTeam,
+        awayTeam: fullFrame.awayTeam,
+        commenceTime: fullFrame.commenceTime,
+        verdict: fullFrame.statsPanel.verdict,
+        topScorelines: fullFrame.statsPanel.topScorelines,
+      });
+    }
+
+    return {
+      id: ev.id,
+      commenceTime: ev.commence_time,
+      homeTeam: ev.home_team,
+      awayTeam: ev.away_team,
+      isLive,
+      frames: {
+        full: fullFrame,
+        live: liveFrame,
+      },
     };
   });
 
@@ -448,6 +477,18 @@ app.get('/api/predictions-log/download', (req, res) => {
   res.download(filePath, 'predictions-log.json', (err) => {
     if (err && !res.headersSent) {
       res.status(404).json({ error: 'Chưa có dữ liệu sao kê nào được ghi lại.' });
+    }
+  });
+});
+
+// Tải file data/frame-snapshots.json ("chốt kèo theo khung") về máy — cùng lý
+// do với /api/predictions-log/download: cần tự backup trước khi deploy code
+// mới, nếu không các khung đã chốt sẽ bị tính lại từ đầu sau mỗi lần cập nhật.
+app.get('/api/frame-snapshots/download', (req, res) => {
+  const filePath = getSnapshotFilePath();
+  res.download(filePath, 'frame-snapshots.json', (err) => {
+    if (err && !res.headersSent) {
+      res.status(404).json({ error: 'Chưa có khung nào được chốt.' });
     }
   });
 });
