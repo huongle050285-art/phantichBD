@@ -56,8 +56,23 @@ Cả 4 khối ("Dự đoán BD", "Đồng thuận", "Dự đoán ML", "Phân tí
 - Bấm nút **"Tải về sao kê"** ở góc bảng (gọi `/api/predictions-log/download`) để tải file `predictions-log.json` hiện tại về máy — nên làm **trước mỗi lần** bạn chuẩn bị upload code mới lên GitHub.
 - Kéo file đã tải về đó vào đúng thư mục `data/` khi upload code mới (giống hệt cách bạn đang giữ lại `data/model.json`), để lần deploy tiếp theo khởi động với đúng lịch sử cũ thay vì bảng trống.
 
+### 2 khung "Cả trận" và "Hiện tại (Live)" — chốt ngay từ đầu, không đổi
+
+Mỗi trận trong "Trận sắp diễn ra" giờ hiển thị thành **từng khung riêng biệt**, mỗi khung có **đầy đủ cả 4 khối** (kèo + Dự đoán BD + Đồng thuận + Dự đoán ML + Phân tích phong độ & đối đầu):
+
+- **"📌 Cả trận"** — luôn có, cho MỌI trận.
+- **"🔴 Hiện tại (Live)"** — chỉ xuất hiện khi trận **đã bắt đầu diễn ra** (The Odds API tự loại các trận đã đấu xong khỏi danh sách, nên hễ trận còn hiện ở đây mà đã quá giờ bóng lăn thì chắc chắn đang live). Tiêu đề trận cũng có thêm nhãn "● ĐANG DIỄN RA".
+
+**Cả 2 khung đều được "chốt" (khoá) NGAY LẦN ĐẦU TIÊN xuất hiện, và sau đó KHÔNG BAO GIỜ tính lại** — dù kèo thị trường hay phong độ 2 đội có cập nhật tiếp theo thời gian, nội dung của khung đó vẫn giữ nguyên y hệt lúc chốt. Mỗi khung hiển thị rõ dòng "Chốt lúc [giờ]" để bạn biết đây là 1 "ảnh chụp" tại đúng thời điểm đó, không phải số liệu cập nhật liên tục:
+- Khung "Cả trận" chốt ngay khi trận lần đầu xuất hiện ở "Trận sắp diễn ra" (thường vài ngày trước giờ đấu).
+- Khung "Hiện tại (Live)" chốt ngay khoảnh khắc đầu tiên server phát hiện trận đã live — cho bạn biết chính xác "lúc trận vừa bắt đầu, kèo/dự đoán trông như thế nào", dù bạn vào xem muộn hơn vẫn thấy đúng ảnh chụp đó (khung này KHÔNG tự cập nhật liên tục theo diễn biến trận đấu).
+
+**Chưa làm khung "Hiệp 1"/"Hiệp 2":** The Odds API có hỗ trợ loại kèo này về mặt lý thuyết (`h2h_h1`, `h2h_h2`,...), nhưng tài liệu của họ ghi rõ loại kèo này "hiện chỉ giới hạn cho thể thao Mỹ và một số nhà cái chọn lọc" — chưa chắc nhà cái châu Âu (đang dùng cho Ngoại hạng Anh) có hỗ trợ, và cách lấy dữ liệu này tốn quota nhiều hơn hẳn (gọi riêng từng trận thay vì 1 lần cho cả danh sách). Tạm bỏ qua để không rủi ro tốn hết quota miễn phí; có thể làm thêm sau nếu xác nhận được là có dữ liệu thật.
+
+**Lưu ý nơi lưu dữ liệu (giống hệt "Bảng sao kê"):** 2 khung này lưu vào file `data/frame-snapshots.json` trên server, cũng bị xoá mỗi lần deploy code mới. Bấm link **"Tải về dữ liệu các khung đã chốt (backup)"** ở cuối trang (gọi `/api/frame-snapshots/download`) để backup, rồi kéo file đó vào `data/` cùng lúc upload code mới — y hệt cách làm với `data/predictions-log.json`.
+
 Gồm 2 phần:
-- **Backend (Express, `src/server.js`)** — giữ cả 3 API key an toàn phía server (không lộ ra trình duyệt), tự cache kết quả để tiết kiệm quota, expose API nội bộ (`/api/upcoming`, `/api/fixtures`, `/api/odds`, `/api/predictions/:id`, `/api/predictions-log`, `/api/predictions-log/download`) cho frontend gọi.
+- **Backend (Express, `src/server.js`)** — giữ cả 3 API key an toàn phía server (không lộ ra trình duyệt), tự cache kết quả để tiết kiệm quota, expose API nội bộ (`/api/upcoming`, `/api/fixtures`, `/api/odds`, `/api/predictions/:id`, `/api/predictions-log`, `/api/predictions-log/download`, `/api/frame-snapshots/download`) cho frontend gọi.
 - **Frontend (`public/`)** — trang HTML/CSS/JS thuần, có dropdown "Xem" để chuyển giữa 2 chế độ, có dark mode tự động.
 
 Ngoài ra vẫn còn 3 script cũ (`fetch:fixtures`, `fetch:odds`, `fetch:predictions`, dùng API-Football) để xuất dữ liệu ra file JSON nếu cần — không bắt buộc cho web app.
@@ -119,7 +134,7 @@ Muốn server tự khởi động lại khi sửa code, dùng `npm run dev` thay
 
 [Render](https://render.com/) hiện có gói **free** cho web service Node.js, không cần thẻ tín dụng, 750 giờ chạy/tháng. Lưu ý: sau ~15 phút không có ai truy cập, app sẽ "ngủ" và mất khoảng 1 phút để khởi động lại ở lượt truy cập tiếp theo — bình thường với gói free.
 
-1. Đưa code (thư mục này) lên một repo GitHub. **Không upload file `.env`** vì nó chứa các API key riêng của bạn. **NHỚ upload cả file `data/model.json`** sau khi chạy `npm run train` — nếu không, bản trên Render sẽ không có "Dự đoán ML". Từ lần cập nhật code thứ 2 trở đi, nếu đã dùng "Bảng sao kê dự đoán" một thời gian, **nhớ bấm "Tải về sao kê" rồi upload `data/predictions-log.json` kèm theo** — nếu không, lịch sử trúng/trật ghi được từ lần deploy trước sẽ bị xoá sạch (xem chi tiết ở mục "Bảng sao kê dự đoán" phía trên).
+1. Đưa code (thư mục này) lên một repo GitHub. **Không upload file `.env`** vì nó chứa các API key riêng của bạn. **NHỚ upload cả file `data/model.json`** sau khi chạy `npm run train` — nếu không, bản trên Render sẽ không có "Dự đoán ML". Từ lần cập nhật code thứ 2 trở đi, nếu đã chạy app một thời gian, **nhớ bấm "Tải về sao kê" VÀ "Tải về dữ liệu các khung đã chốt" rồi upload cả `data/predictions-log.json` lẫn `data/frame-snapshots.json` kèm theo** — nếu không, lịch sử trúng/trật và các khung "Cả trận"/"Hiện tại (Live)" đã chốt từ lần deploy trước sẽ bị xoá sạch (xem chi tiết ở 2 mục phía trên).
 2. Vào https://render.com, đăng ký/đăng nhập (có thể dùng tài khoản GitHub).
 3. Chọn **New → Web Service**, kết nối tới repo GitHub vừa tạo.
 4. Cấu hình:
