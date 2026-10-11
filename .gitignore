@@ -1,3 +1,13 @@
 node_modules/
 .env
-data/*.json
+data/fixtures.json
+data/odds.json
+data/predictions.json
+# LƯU Ý: data/model.json (mô hình "Dự đoán ML" đã huấn luyện) KHÔNG bị bỏ qua —
+# đây là file DUY NHẤT giúp mô hình "sống sót" qua mỗi lần Render deploy lại
+# (ổ đĩa Render free bị xóa sạch mỗi lần deploy), nên PHẢI được commit lên GitHub.
+#
+# data/predictions-log.json ("Bảng sao kê dự đoán") cũng KHÔNG bị bỏ qua vì lý
+# do tương tự — nhưng khác model.json, file này được server tự ghi thêm liên
+# tục khi app đang chạy, nên cần tải về (nút "Tải về sao kê" trong app) rồi
+# ghi đè lại trước mỗi lần deploy code mới, nếu không muốn mất lịch sử cũ.
