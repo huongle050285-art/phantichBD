@@ -1,0 +1,695 @@
+[
+  {
+    "id": "acd5bd945dd953ad1e300df5bfe696f9",
+    "homeTeam": "Coventry City",
+    "awayTeam": "Newcastle United",
+    "commenceTime": "2026-10-12T19:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.290Z",
+    "verdictSide": "away",
+    "verdictLabel": "Newcastle United thắng (52%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 9.9
+      },
+      {
+        "home": 1,
+        "away": 2,
+        "probabilityPct": 9.6
+      },
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 7.5
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "764e6513cb3f348881503df70ccb90e0",
+    "homeTeam": "Everton",
+    "awayTeam": "Chelsea",
+    "commenceTime": "2026-10-17T11:30:00Z",
+    "loggedAt": "2026-10-12T00:52:56.291Z",
+    "verdictSide": "home",
+    "verdictLabel": "Everton thắng (49%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 10.9
+      },
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 9.6
+      },
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 8.7
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "8f1945e7272bc7e89016439f5ab321c7",
+    "homeTeam": "Brentford",
+    "awayTeam": "Liverpool",
+    "commenceTime": "2026-10-17T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.294Z",
+    "verdictSide": "home",
+    "verdictLabel": "Brentford thắng (43%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 12.7
+      },
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 11.3
+      },
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 9.2
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "7895f97f2f9577f3b13287a3d086859d",
+    "homeTeam": "Fulham",
+    "awayTeam": "Hull City",
+    "commenceTime": "2026-10-17T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.348Z",
+    "verdictSide": "home",
+    "verdictLabel": "Fulham thắng (51%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 9.7
+      },
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 9.4
+      },
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 7
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "bf2142d1ca76ba2fc9e61afce80f86c0",
+    "homeTeam": "Manchester City",
+    "awayTeam": "Ipswich Town",
+    "commenceTime": "2026-10-17T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.349Z",
+    "verdictSide": "home",
+    "verdictLabel": "Manchester City thắng (65%)",
+    "topScorelines": [
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 8.5
+      },
+      {
+        "home": 3,
+        "away": 1,
+        "probabilityPct": 7.8
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 6.2
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "d1bbbdcd3d430e70091b518369b559cf",
+    "homeTeam": "Newcastle United",
+    "awayTeam": "Aston Villa",
+    "commenceTime": "2026-10-17T16:30:00Z",
+    "loggedAt": "2026-10-12T00:52:56.351Z",
+    "verdictSide": "home",
+    "verdictLabel": "Newcastle United thắng (51%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 9.7
+      },
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 9.4
+      },
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 7
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "dfd5d6648be46426e418801584d46a68",
+    "homeTeam": "Bournemouth",
+    "awayTeam": "Sunderland",
+    "commenceTime": "2026-10-18T13:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.353Z",
+    "verdictSide": "home",
+    "verdictLabel": "Bournemouth thắng (53%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 9.6
+      },
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 9.6
+      },
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 7.2
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "9fc08b390a49c4434f7cf631a0bb88fb",
+    "homeTeam": "Brighton and Hove Albion",
+    "awayTeam": "Crystal Palace",
+    "commenceTime": "2026-10-18T13:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.355Z",
+    "verdictSide": "home",
+    "verdictLabel": "Brighton and Hove Albion thắng (59%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 12.5
+      },
+      {
+        "home": 2,
+        "away": 0,
+        "probabilityPct": 11.2
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 10.9
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "676b3b0b609e9cf565da450786618d26",
+    "homeTeam": "Leeds United",
+    "awayTeam": "Manchester United",
+    "commenceTime": "2026-10-18T13:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.356Z",
+    "verdictSide": "home",
+    "verdictLabel": "Leeds United thắng (53%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 13
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 11.9
+      },
+      {
+        "home": 2,
+        "away": 0,
+        "probabilityPct": 10.3
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "f696a248965373d9071dc0662e5c58a8",
+    "homeTeam": "Nottingham Forest",
+    "awayTeam": "Arsenal",
+    "commenceTime": "2026-10-18T15:30:00Z",
+    "loggedAt": "2026-10-12T00:52:56.446Z",
+    "verdictSide": "away",
+    "verdictLabel": "Arsenal thắng (44%)",
+    "topScorelines": [
+      {
+        "home": 0,
+        "away": 0,
+        "probabilityPct": 26.4
+      },
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 23.1
+      },
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 12.1
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "9baaf4e48b041cfef04e70e42532502e",
+    "homeTeam": "Tottenham Hotspur",
+    "awayTeam": "Coventry City",
+    "commenceTime": "2026-10-19T19:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.449Z",
+    "verdictSide": "home",
+    "verdictLabel": "Tottenham Hotspur thắng (48%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 16.9
+      },
+      {
+        "home": 0,
+        "away": 0,
+        "probabilityPct": 13.5
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 12.7
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "d0202960708a442401d7fc7bd74a0183",
+    "homeTeam": "Ipswich Town",
+    "awayTeam": "Nottingham Forest",
+    "commenceTime": "2026-10-23T19:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.452Z",
+    "verdictSide": "away",
+    "verdictLabel": "Nottingham Forest thắng (42%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 10.6
+      },
+      {
+        "home": 1,
+        "away": 2,
+        "probabilityPct": 8.8
+      },
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 7.9
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "aca5dd297dbee71f576f7641569fe578",
+    "homeTeam": "Aston Villa",
+    "awayTeam": "Manchester City",
+    "commenceTime": "2026-10-24T11:30:00Z",
+    "loggedAt": "2026-10-12T00:52:56.455Z",
+    "verdictSide": "away",
+    "verdictLabel": "Manchester City thắng (72%)",
+    "topScorelines": [
+      {
+        "home": 0,
+        "away": 2,
+        "probabilityPct": 13.9
+      },
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 12.8
+      },
+      {
+        "home": 0,
+        "away": 3,
+        "probabilityPct": 10
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "f66e4f29c1b7bcfc5ab58c0b88c8850b",
+    "homeTeam": "Arsenal",
+    "awayTeam": "Everton",
+    "commenceTime": "2026-10-24T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.459Z",
+    "verdictSide": "home",
+    "verdictLabel": "Arsenal thắng (65%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 0,
+        "probabilityPct": 15.1
+      },
+      {
+        "home": 2,
+        "away": 0,
+        "probabilityPct": 13.8
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 10.1
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "0fbb2626ed9534b9dcf21d16925f9bd7",
+    "homeTeam": "Coventry City",
+    "awayTeam": "Fulham",
+    "commenceTime": "2026-10-24T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.546Z",
+    "verdictSide": "away",
+    "verdictLabel": "Fulham thắng (51%)",
+    "topScorelines": [
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 15.8
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 12.5
+      },
+      {
+        "home": 0,
+        "away": 0,
+        "probabilityPct": 11.5
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "0382a9faef0bb8df1bcc436536cffb05",
+    "homeTeam": "Chelsea",
+    "awayTeam": "Tottenham Hotspur",
+    "commenceTime": "2026-10-24T16:30:00Z",
+    "loggedAt": "2026-10-12T00:52:56.550Z",
+    "verdictSide": "home",
+    "verdictLabel": "Chelsea thắng (53%)",
+    "topScorelines": [
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 9.1
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 8.4
+      },
+      {
+        "home": 2,
+        "away": 2,
+        "probabilityPct": 6.8
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "33fb7467b23c91d57dc976d9ab05ea97",
+    "homeTeam": "Manchester United",
+    "awayTeam": "Bournemouth",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.554Z",
+    "verdictSide": "home",
+    "verdictLabel": "Manchester United thắng (66%)",
+    "topScorelines": [
+      {
+        "home": 2,
+        "away": 1,
+        "probabilityPct": 9.2
+      },
+      {
+        "home": 3,
+        "away": 1,
+        "probabilityPct": 7.9
+      },
+      {
+        "home": 2,
+        "away": 0,
+        "probabilityPct": 7.3
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "69493b5ebb84f24ab1d6023a30ee89f0",
+    "homeTeam": "Hull City",
+    "awayTeam": "Brentford",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.558Z",
+    "verdictSide": "away",
+    "verdictLabel": "Brentford thắng (51%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 11.8
+      },
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 11.3
+      },
+      {
+        "home": 1,
+        "away": 2,
+        "probabilityPct": 9.6
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "290ba8cd3f3a2e9252effca673bf5549",
+    "homeTeam": "Liverpool",
+    "awayTeam": "Brighton and Hove Albion",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.646Z",
+    "verdictSide": "away",
+    "verdictLabel": "Brighton and Hove Albion thắng (54%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 2,
+        "probabilityPct": 9.4
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 8.9
+      },
+      {
+        "home": 0,
+        "away": 2,
+        "probabilityPct": 6.9
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "fe235b26408c477368c40672a4488694",
+    "homeTeam": "Crystal Palace",
+    "awayTeam": "Newcastle United",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "loggedAt": "2026-10-12T00:52:56.649Z",
+    "verdictSide": "away",
+    "verdictLabel": "Newcastle United thắng (45%)",
+    "topScorelines": [
+      {
+        "home": 1,
+        "away": 2,
+        "probabilityPct": 7.7
+      },
+      {
+        "home": 2,
+        "away": 2,
+        "probabilityPct": 7.3
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 7.1
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  },
+  {
+    "id": "e82f6b60fa41b82c8510f5b67ce61849",
+    "homeTeam": "Sunderland",
+    "awayTeam": "Leeds United",
+    "commenceTime": "2026-10-25T16:30:00Z",
+    "loggedAt": "2026-10-12T00:52:56.652Z",
+    "verdictSide": "away",
+    "verdictLabel": "Leeds United thắng (41%)",
+    "topScorelines": [
+      {
+        "home": 0,
+        "away": 1,
+        "probabilityPct": 16.7
+      },
+      {
+        "home": 0,
+        "away": 0,
+        "probabilityPct": 16
+      },
+      {
+        "home": 1,
+        "away": 1,
+        "probabilityPct": 13.2
+      }
+    ],
+    "status": "pending",
+    "resolvedAt": null,
+    "actualHomeGoals": null,
+    "actualAwayGoals": null,
+    "actualWinnerSide": null,
+    "verdictCorrect": null,
+    "scorelineHitIndex": null
+  }
+]
