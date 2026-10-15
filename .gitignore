@@ -16,3 +16,8 @@ data/predictions.json
 # do trên: cần tải về (link "Tải về dữ liệu các khung đã chốt" ở footer) rồi
 # ghi đè lại trước mỗi lần deploy code mới, nếu không các khung sẽ bị chốt lại
 # từ đầu (mất timestamp + nội dung gốc đã khoá trước đó).
+#
+# LƯU Ý (bản cập nhật mới): nếu đã cấu hình biến môi trường
+# FIREBASE_SERVICE_ACCOUNT_BASE64 (xem README.md), CẢ 2 file trên sẽ KHÔNG
+# còn được dùng nữa — dữ liệu chuyển hẳn sang lưu trên Firebase Firestore,
+# bền vững qua mọi lần deploy, không cần tải/upload tay nữa.

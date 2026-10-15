@@ -55,6 +55,7 @@ Cả 4 khối ("Dự đoán BD", "Đồng thuận", "Dự đoán ML", "Phân tí
 **Lưu ý quan trọng về nơi lưu dữ liệu:** bảng này lưu vào file `data/predictions-log.json` **trên server** (dùng chung cho mọi người xem trang). Khác với `data/model.json` (file tĩnh, không đổi), file này được server **tự ghi thêm liên tục khi app đang chạy** — mà ổ đĩa Render free bị xoá sạch mỗi lần bạn deploy code mới, nên **mọi dòng được ghi sau lần upload gần nhất sẽ mất** nếu không backup trước khi cập nhật code. Để tránh mất lịch sử:
 - Bấm nút **"Tải về sao kê"** ở góc bảng (gọi `/api/predictions-log/download`) để tải file `predictions-log.json` hiện tại về máy — nên làm **trước mỗi lần** bạn chuẩn bị upload code mới lên GitHub.
 - Kéo file đã tải về đó vào đúng thư mục `data/` khi upload code mới (giống hệt cách bạn đang giữ lại `data/model.json`), để lần deploy tiếp theo khởi động với đúng lịch sử cũ thay vì bảng trống.
+- **Hoặc:** cấu hình Firebase Firestore (mục 5b bên dưới) để dữ liệu tự lưu bền vững, không cần tải/upload tay nữa.
 
 ### 2 khung "Cả trận" và "Hiện tại (Live)" — chốt ngay từ đầu, không đổi
 
@@ -69,7 +70,7 @@ Mỗi trận trong "Trận sắp diễn ra" giờ hiển thị thành **từng k
 
 **Chưa làm khung "Hiệp 1"/"Hiệp 2":** The Odds API có hỗ trợ loại kèo này về mặt lý thuyết (`h2h_h1`, `h2h_h2`,...), nhưng tài liệu của họ ghi rõ loại kèo này "hiện chỉ giới hạn cho thể thao Mỹ và một số nhà cái chọn lọc" — chưa chắc nhà cái châu Âu (đang dùng cho Ngoại hạng Anh) có hỗ trợ, và cách lấy dữ liệu này tốn quota nhiều hơn hẳn (gọi riêng từng trận thay vì 1 lần cho cả danh sách). Tạm bỏ qua để không rủi ro tốn hết quota miễn phí; có thể làm thêm sau nếu xác nhận được là có dữ liệu thật.
 
-**Lưu ý nơi lưu dữ liệu (giống hệt "Bảng sao kê"):** 2 khung này lưu vào file `data/frame-snapshots.json` trên server, cũng bị xoá mỗi lần deploy code mới. Bấm link **"Tải về dữ liệu các khung đã chốt (backup)"** ở cuối trang (gọi `/api/frame-snapshots/download`) để backup, rồi kéo file đó vào `data/` cùng lúc upload code mới — y hệt cách làm với `data/predictions-log.json`.
+**Lưu ý nơi lưu dữ liệu (giống hệt "Bảng sao kê"):** 2 khung này lưu vào file `data/frame-snapshots.json` trên server, cũng bị xoá mỗi lần deploy code mới. Bấm link **"Tải về dữ liệu các khung đã chốt (backup)"** ở cuối trang (gọi `/api/frame-snapshots/download`) để backup, rồi kéo file đó vào `data/` cùng lúc upload code mới — y hệt cách làm với `data/predictions-log.json`. Hoặc cấu hình Firebase Firestore (mục 5b) để khỏi cần làm việc này.
 
 Gồm 2 phần:
 - **Backend (Express, `src/server.js`)** — giữ cả 3 API key an toàn phía server (không lộ ra trình duyệt), tự cache kết quả để tiết kiệm quota, expose API nội bộ (`/api/upcoming`, `/api/fixtures`, `/api/odds`, `/api/predictions/:id`, `/api/predictions-log`, `/api/predictions-log/download`, `/api/frame-snapshots/download`) cho frontend gọi.
@@ -145,6 +146,43 @@ Muốn server tự khởi động lại khi sửa code, dùng `npm run dev` thay
 
 Mỗi lần push code mới lên GitHub, Render sẽ tự deploy lại bản mới. Lưu ý: ổ đĩa của Render free bị xóa sạch mỗi lần deploy lại — vì vậy `data/model.json` PHẢI nằm trong repo GitHub (không tự sinh ra trên server).
 
+## 5b. Lưu dữ liệu bền vững bằng Firebase Firestore (tuỳ chọn, khuyên dùng)
+
+Mục 5 ở trên có 1 điểm bất tiện: `data/predictions-log.json` và `data/frame-snapshots.json` bị xoá mỗi lần Render deploy lại code, nên bạn phải tự tải về rồi upload lại mỗi lần cập nhật. Làm theo hướng dẫn dưới đây để chuyển 2 file này sang **Firebase Firestore** (dịch vụ database miễn phí của Google) — dữ liệu sẽ sống bền vững qua mọi lần deploy, không cần tải/upload tay nữa.
+
+**Lưu ý quan trọng:** đây CHỈ giải quyết vấn đề "mất dữ liệu khi deploy". Nó **không** giải quyết việc Render free tier cho server "ngủ" sau ~15 phút không ai truy cập (gây chậm ở lượt truy cập đầu tiên, xem mục 6) — 2 vấn đề này độc lập với nhau.
+
+**Bước 1 — Tạo project Firebase (free):**
+1. Vào https://console.firebase.google.com, đăng nhập bằng tài khoản Google, bấm **"Add project"** (Thêm project).
+2. Đặt tên project tuỳ ý (vd `phantichbd`), bỏ qua Google Analytics nếu được hỏi (không cần cho việc này).
+3. Vào project vừa tạo → menu bên trái chọn **Build → Firestore Database** → **Create database** → chọn chế độ **Production mode** → chọn 1 region gần bạn (vd `asia-southeast1`) → **Enable**.
+
+**Bước 2 — Tạo service account key:**
+1. Trong project Firebase, bấm biểu tượng ⚙️ (Settings) cạnh "Project Overview" → **Project settings**.
+2. Chuyển sang tab **Service accounts** → bấm **Generate new private key** → **Generate key**. Một file `.json` sẽ tự tải về máy — **giữ file này bí mật, không đưa lên GitHub**.
+
+**Bước 3 — Chuyển file key thành 1 dòng text (base64) để dán vào biến môi trường:**
+
+Trên máy Mac/Linux (Terminal):
+```bash
+base64 -w0 duong-dan-file-key-vua-tai.json
+```
+Trên Windows (PowerShell):
+```powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("duong-dan-file-key-vua-tai.json"))
+```
+Lệnh trên in ra 1 chuỗi ký tự dài — copy toàn bộ chuỗi đó.
+
+**Bước 4 — Thêm biến môi trường:**
+- Chạy local: dán chuỗi vừa copy vào file `.env`, dòng `FIREBASE_SERVICE_ACCOUNT_BASE64=<chuỗi vừa copy>` (đã có sẵn dòng mẫu, đang bị comment `#`, trong `.env.example`).
+- Trên Render: vào web service → **Environment** → **Add Environment Variable** → key `FIREBASE_SERVICE_ACCOUNT_BASE64`, value = chuỗi vừa copy → **Save Changes** (Render tự deploy lại sau khi lưu).
+
+Chỉ cần làm xong 4 bước trên, server tự nhận ra đã có Firebase và chuyển hẳn sang lưu "Bảng sao kê" + "Chốt kèo theo khung" vào Firestore — không cần đổi gì thêm. Nếu BỎ TRỐNG biến này (không làm 4 bước trên), app vẫn chạy bình thường như cũ, chỉ là quay về lưu file JSON local (và cần backup tay như mục 5).
+
+**Chi phí:** gói free (Spark) của Firestore cho 50.000 lượt đọc/ngày, 20.000 lượt ghi/ngày, 1GiB lưu trữ — với quy mô vài chục/vài trăm trận mỗi mùa và vài người xem, dùng KHÔNG BAO GIỜ chạm tới giới hạn này, hoàn toàn miễn phí.
+
+**Lưu ý kỹ thuật nhỏ (không cần quan tâm nếu chỉ dùng, không sửa code):** nếu Firestore gặp lỗi mạng tạm thời, server tự log lỗi và coi như "chưa có dữ liệu" cho lần gọi đó (không dùng lẫn file JSON local, để tránh dữ liệu bị chốt rải rác ở 2 nơi khác nhau) — lần gọi kế tiếp khi Firestore hoạt động lại sẽ chốt đúng như bình thường.
+
 ## 6. Về giới hạn của các gói miễn phí
 
 - **API-Football free:** 100 request/ngày, **chỉ hỗ trợ mùa 2022-2024**.
@@ -162,3 +200,21 @@ npm run fetch:odds          # lưu data/odds.json
 npm run fetch:predictions   # lưu data/predictions.json (cần chạy fetch:fixtures trước)
 npm run fetch:all           # chạy tuần tự cả 3
 ```
+
+## 8. Gắn vào domain riêng đã có sẵn (vd `xosoai.online`) qua subdomain
+
+Nếu bạn đã có 1 website khác chạy trên domain riêng (vd `xosoai.online`, trang đó có thể là WordPress, trang tĩnh, app Node khác... — **không quan trọng app đó dùng công nghệ gì**) và muốn gắn app EPL odds này vào, cách đơn giản và an toàn nhất là tạo 1 **subdomain riêng** (vd `bongda.xosoai.online`) trỏ sang app này. Subdomain là 1 "địa chỉ con" hoàn toàn độc lập — không đụng tới code hay nội dung của trang chính, nên không có rủi ro làm hỏng trang chính đang chạy.
+
+**Bước 1 — Lấy "địa chỉ đích" từ Render:**
+1. Vào Render dashboard → chọn web service của app này → **Settings** → mục **Custom Domains** → **Add Custom Domain**.
+2. Nhập subdomain bạn muốn dùng, vd `bongda.xosoai.online` → Render sẽ hiện ra 1 giá trị CNAME cần trỏ tới (dạng `ten-app-cua-ban.onrender.com`).
+
+**Bước 2 — Thêm bản ghi DNS tại nơi quản lý domain `xosoai.online`:**
+1. Đăng nhập vào nơi bạn đã mua/quản lý domain `xosoai.online` (vd Cloudflare, Namecheap, GoDaddy, hoặc nhà cung cấp trong nước như Matbao/PA Vietnam...) → tìm mục quản lý **DNS Records**.
+2. Thêm 1 bản ghi mới: **Type = CNAME**, **Name/Host = `bongda`** (phần trước domain, đổi tuỳ ý tên bạn muốn), **Value/Target = giá trị Render đưa ở Bước 1**.
+3. Lưu lại. DNS thường cập nhật trong vài phút đến vài giờ (thường rất nhanh nếu dùng Cloudflare).
+
+**Bước 3 — Chờ Render xác nhận:**
+Sau khi DNS trỏ đúng, Render tự phát hiện và cấp SSL certificate miễn phí cho subdomain (vài phút, có thể mất tới 1 giờ). Khi xong, `https://bongda.xosoai.online` sẽ hiển thị đúng app EPL odds này — trang chính ở `xosoai.online` vẫn nguyên vẹn, không bị ảnh hưởng gì.
+
+**Nếu muốn gắn app vào MỘT TRANG/MỤC bên trong site chính** (vd `xosoai.online/bongda` thay vì subdomain riêng) — cách làm sẽ phụ thuộc vào công nghệ site chính đang dùng (reverse proxy, iframe, hoặc gộp code), phức tạp hơn cách subdomain ở trên và cần biết cụ thể site chính đang host ở đâu/bằng gì. Nếu muốn đi hướng này, cho mình biết site chính đang chạy bằng công nghệ/hosting gì để mình hướng dẫn cụ thể.
