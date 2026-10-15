@@ -404,6 +404,7 @@ async function getUpcomingMatchesCached() {
           commenceTime: fullFrame.commenceTime,
           verdict: fullFrame.statsPanel.verdict,
           topScorelines: fullFrame.statsPanel.topScorelines,
+          consensus: fullFrame.consensus,
         });
       }
 

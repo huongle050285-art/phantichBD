@@ -32,7 +32,19 @@ function resultSide(homeGoals, awayGoals) {
   return 'draw';
 }
 
-function buildNewEntry({ id, homeTeam, awayTeam, commenceTime, verdict, topScorelines }) {
+// "consensus" — kết quả buildConsensus() (src/ml/consensus.js) tại ĐÚNG thời
+// điểm "chốt kèo" (khung "full", xem src/server.js) — ghi lại 1 LẦN DUY NHẤT
+// cùng lúc với verdict/topScorelines, không tính lại sau này, đúng tinh thần
+// "chốt ngay từ đầu, không đổi" của cả bảng sao kê. Chỉ lưu đúng 1 trường tóm
+// tắt (`consensusAgreement`) — không lưu lại toàn bộ object consensus (đã có
+// sẵn đầy đủ hơn trong frame "full" của frameSnapshots.js, không cần trùng lặp).
+function consensusAgreementOf(consensus) {
+  if (!consensus?.available) return null;
+  if (consensus.source === 'both') return consensus.agreement; // 'strong-agree' | 'agree' | 'disagree'
+  return consensus.source; // 'ml-only' | 'stats-only' — chỉ có 1 nguồn, chưa so sánh được
+}
+
+function buildNewEntry({ id, homeTeam, awayTeam, commenceTime, verdict, topScorelines, consensus }) {
   return {
     id,
     homeTeam,
@@ -41,6 +53,7 @@ function buildNewEntry({ id, homeTeam, awayTeam, commenceTime, verdict, topScore
     loggedAt: new Date().toISOString(),
     verdictSide: verdict.side,
     verdictLabel: verdict.label,
+    consensusAgreement: consensusAgreementOf(consensus),
     topScorelines: topScorelines.map((s) => ({ home: s.home, away: s.away, probabilityPct: s.probabilityPct })),
     status: 'pending',
     resolvedAt: null,
@@ -171,9 +184,9 @@ async function getLogFirestore() {
 // Ghi lại 1 dự đoán mới — chỉ ghi 1 LẦN DUY NHẤT cho mỗi trận (theo `id`), để
 // không bị "chốt kèo" đổi liên tục mỗi lần kèo/phong độ cập nhật trước giờ đấu
 // (ghi đúng nhận định tại thời điểm trận ĐẦU TIÊN xuất hiện trong danh sách).
-export async function recordPrediction({ id, homeTeam, awayTeam, commenceTime, verdict, topScorelines }) {
+export async function recordPrediction({ id, homeTeam, awayTeam, commenceTime, verdict, topScorelines, consensus }) {
   if (!id || !verdict || !topScorelines?.length) return;
-  const params = { id, homeTeam, awayTeam, commenceTime, verdict, topScorelines };
+  const params = { id, homeTeam, awayTeam, commenceTime, verdict, topScorelines, consensus };
 
   if (isFirestoreEnabled()) {
     try {
