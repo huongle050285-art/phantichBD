@@ -1,0 +1,3844 @@
+{
+  "764e6513cb3f348881503df70ccb90e0::full": {
+    "homeTeam": "Everton",
+    "awayTeam": "Chelsea",
+    "commenceTime": "2026-10-17T11:30:00Z",
+    "odds": {
+      "bookmaker": "Winamax (FR)",
+      "home": 2.95,
+      "draw": 3.65,
+      "away": 2.05
+    },
+    "asianHandicap": {
+      "bookmaker": "Marathon Bet",
+      "homePoint": 0,
+      "homeOdd": 2.34,
+      "awayPoint": 0,
+      "awayOdd": 1.62
+    },
+    "totals": {
+      "bookmaker": "Marathon Bet",
+      "point": 2.5,
+      "overOdd": 1.68,
+      "underOdd": 2.21,
+      "overProb": 57,
+      "underProb": 43,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 31,
+      "draw": 25,
+      "away": 44
+    },
+    "analysis": {
+      "favoriteTeam": null,
+      "marginGoals": 0,
+      "suggestedScore": null,
+      "notes": [
+        "Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (57% Tài / 43% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 49,
+      "drawProb": 22,
+      "awayWinProb": 29,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Everton",
+      "awayTeam": "Chelsea",
+      "homeRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Hull City",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T16:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-06T13:00:00Z",
+          "opponent": "Manchester United",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "home",
+          "goalsFor": 5,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-18T19:00:00Z",
+          "opponent": "Brentford",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Hull City",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-06T15:30:00Z",
+          "opponent": "Arsenal",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "home",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Everton",
+      "verdict": {
+        "side": "home",
+        "team": "Everton",
+        "prob": 49,
+        "label": "Everton thắng (49%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 10.9
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 9.6
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 8.7
+        }
+      ],
+      "winDrawAway": {
+        "home": 49,
+        "draw": 24,
+        "away": 27
+      },
+      "notes": [
+        "Everton (sân nhà, 3 trận gần nhất): ghi 1.7 · thủng 0.7 bàn/trận.",
+        "Chelsea (sân khách, 3 trận gần nhất): ghi 1.3 · thủng 2.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp 0 cho Everton.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Everton được đánh giá nhỉnh hơn nhẹ."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 49,
+      "drawProb": 23,
+      "awayWinProb": 28,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Everton — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.328Z"
+  },
+  "8f1945e7272bc7e89016439f5ab321c7::full": {
+    "homeTeam": "Brentford",
+    "awayTeam": "Liverpool",
+    "commenceTime": "2026-10-17T14:00:00Z",
+    "odds": {
+      "bookmaker": "Winamax (FR)",
+      "home": 2.25,
+      "draw": 3.55,
+      "away": 2.65
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 0,
+      "homeOdd": 1.85,
+      "awayPoint": 0,
+      "awayOdd": 2.1
+    },
+    "totals": {
+      "bookmaker": "Codere (IT)",
+      "point": 3.5,
+      "overOdd": 2.28,
+      "underOdd": 1.54,
+      "overProb": 40,
+      "underProb": 60,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 40,
+      "draw": 26,
+      "away": 34
+    },
+    "analysis": {
+      "favoriteTeam": null,
+      "marginGoals": 0,
+      "suggestedScore": null,
+      "notes": [
+        "Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.",
+        "Kèo tài xỉu ở mức 3.5 bàn, thị trường nghiêng Xỉu (Under) (40% Tài / 60% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 48,
+      "drawProb": 27,
+      "awayWinProb": 24,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Brentford",
+      "awayTeam": "Liverpool",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Aston Villa",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-18T19:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "home",
+          "goalsFor": 3,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-11T15:30:00Z",
+          "opponent": "Manchester City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Fulham",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-04T19:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-29T11:30:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Brentford",
+      "verdict": {
+        "side": "home",
+        "team": "Brentford",
+        "prob": 43,
+        "label": "Brentford thắng (43%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 12.7
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 11.3
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "probabilityPct": 9.2
+        }
+      ],
+      "winDrawAway": {
+        "home": 43,
+        "draw": 27,
+        "away": 31
+      },
+      "notes": [
+        "Brentford (sân nhà, 3 trận gần nhất): ghi 2.3 · thủng 0.3 bàn/trận.",
+        "Liverpool (sân khách, 3 trận gần nhất): ghi 1.7 · thủng 0.7 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp 0 cho Brentford.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Brentford được đánh giá nhỉnh hơn nhẹ."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 46,
+      "drawProb": 27,
+      "awayWinProb": 28,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Brentford — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.329Z"
+  },
+  "7895f97f2f9577f3b13287a3d086859d::full": {
+    "homeTeam": "Fulham",
+    "awayTeam": "Hull City",
+    "commenceTime": "2026-10-17T14:00:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 1.67,
+      "draw": 3.8,
+      "away": 4.75
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": -1.5,
+      "homeOdd": 3.04,
+      "awayPoint": 1.5,
+      "awayOdd": 1.46
+    },
+    "totals": {
+      "bookmaker": "William Hill",
+      "point": 2.5,
+      "overOdd": 1.67,
+      "underOdd": 2.1,
+      "overProb": 56,
+      "underProb": 44,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 56,
+      "draw": 25,
+      "away": 20
+    },
+    "analysis": {
+      "favoriteTeam": "Fulham",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 3,
+        "away": 0
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1.5 cho Fulham) cho thấy Fulham được đánh giá nhỉnh hơn Hull City khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (56% Tài / 44% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 35,
+      "drawProb": 23,
+      "awayWinProb": 42,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Fulham",
+      "awayTeam": "Hull City",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T15:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Liverpool",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Everton",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Newcastle United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T16:30:00Z",
+          "opponent": "Aston Villa",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Fulham",
+      "verdict": {
+        "side": "home",
+        "team": "Fulham",
+        "prob": 51,
+        "label": "Fulham thắng (51%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 9.7
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 9.4
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 7
+        }
+      ],
+      "winDrawAway": {
+        "home": 51,
+        "draw": 22,
+        "away": 27
+      },
+      "notes": [
+        "Fulham (sân nhà, 3 trận gần nhất): ghi 1.7 · thủng 2.3 bàn/trận.",
+        "Hull City (sân khách, 3 trận gần nhất): ghi 1.3 · thủng 1.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1.5 cho Fulham.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Fulham được đánh giá nhỉnh hơn nhẹ."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 43,
+      "drawProb": 23,
+      "awayWinProb": 35,
+      "agreement": "disagree",
+      "note": "\"Dự đoán ML\" nghiêng về Hull City, trong khi \"Phân tích phong độ & đối đầu\" lại nghiêng về Fulham — 2 nguồn trái chiều, nên tham khảo thận trọng hơn."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.331Z"
+  },
+  "bf2142d1ca76ba2fc9e61afce80f86c0::full": {
+    "homeTeam": "Manchester City",
+    "awayTeam": "Ipswich Town",
+    "commenceTime": "2026-10-17T14:00:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 1.22,
+      "draw": 6.5,
+      "away": 10
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": -1.5,
+      "homeOdd": 1.71,
+      "awayPoint": 1.5,
+      "awayOdd": 2.32
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 3.5,
+      "overOdd": 1.99,
+      "underOdd": 1.95,
+      "overProb": 49,
+      "underProb": 51,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 76,
+      "draw": 14,
+      "away": 9
+    },
+    "analysis": {
+      "favoriteTeam": "Manchester City",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 3,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1.5 cho Manchester City) cho thấy Manchester City được đánh giá nhỉnh hơn Ipswich Town khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 3.5 bàn, thị trường nghiêng Xỉu (Under) (49% Tài / 51% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 71,
+      "drawProb": 18,
+      "awayWinProb": 11,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Manchester City",
+      "awayTeam": "Ipswich Town",
+      "homeRecent": [
+        {
+          "date": "2026-10-11T15:30:00Z",
+          "opponent": "Liverpool",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "home",
+          "goalsFor": 5,
+          "goalsAgainst": 3,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-13T15:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-28T19:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "away",
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Fulham",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Everton",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-04T19:00:00Z",
+          "opponent": "Liverpool",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-30T15:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 5,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Manchester City",
+      "verdict": {
+        "side": "home",
+        "team": "Manchester City",
+        "prob": 65,
+        "label": "Manchester City thắng (65%)"
+      },
+      "topScorelines": [
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 8.5
+        },
+        {
+          "home": 3,
+          "away": 1,
+          "probabilityPct": 7.8
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 6.2
+        }
+      ],
+      "winDrawAway": {
+        "home": 65,
+        "draw": 17,
+        "away": 18
+      },
+      "notes": [
+        "Manchester City (sân nhà, 3 trận gần nhất): ghi 2.7 · thủng 1.3 bàn/trận.",
+        "Ipswich Town (sân khách, 3 trận gần nhất): ghi 1.7 · thủng 2.7 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1.5 cho Manchester City.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Manchester City được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 68,
+      "drawProb": 18,
+      "awayWinProb": 15,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Manchester City — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.374Z"
+  },
+  "d1bbbdcd3d430e70091b518369b559cf::full": {
+    "homeTeam": "Newcastle United",
+    "awayTeam": "Aston Villa",
+    "commenceTime": "2026-10-17T16:30:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 2.15,
+      "draw": 3.5,
+      "away": 3
+    },
+    "asianHandicap": {
+      "bookmaker": "MyBookie.ag",
+      "homePoint": -0.5,
+      "homeOdd": 2.15,
+      "awayPoint": 0.5,
+      "awayOdd": 1.62
+    },
+    "totals": {
+      "bookmaker": "MyBookie.ag",
+      "point": 2.5,
+      "overOdd": 1.56,
+      "underOdd": 2.27,
+      "overProb": 59,
+      "underProb": 41,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 43,
+      "draw": 26,
+      "away": 31
+    },
+    "analysis": {
+      "favoriteTeam": "Newcastle United",
+      "marginGoals": 0.5,
+      "suggestedScore": {
+        "home": 2,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -0.5 cho Newcastle United) cho thấy Newcastle United được đánh giá nhỉnh hơn Aston Villa khoảng 0.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (59% Tài / 41% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 44,
+      "drawProb": 27,
+      "awayWinProb": 29,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Newcastle United",
+      "awayTeam": "Aston Villa",
+      "homeRecent": [
+        {
+          "date": "2026-10-12T19:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Hull City",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-14T19:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T11:30:00Z",
+          "opponent": "Bournemouth",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T16:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Brentford",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T11:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T16:30:00Z",
+          "opponent": "Hull City",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-31T19:00:00Z",
+          "opponent": "Arsenal",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Newcastle United",
+      "verdict": {
+        "side": "home",
+        "team": "Newcastle United",
+        "prob": 51,
+        "label": "Newcastle United thắng (51%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 9.7
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 9.4
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 7
+        }
+      ],
+      "winDrawAway": {
+        "home": 51,
+        "draw": 22,
+        "away": 27
+      },
+      "notes": [
+        "Newcastle United (sân nhà, 3 trận gần nhất): ghi 2.0 · thủng 1.7 bàn/trận.",
+        "Aston Villa (sân khách, 3 trận gần nhất): ghi 1.0 · thủng 2.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -0.5 cho Newcastle United.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Newcastle United được đánh giá nhỉnh hơn nhẹ."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 48,
+      "drawProb": 25,
+      "awayWinProb": 28,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Newcastle United — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.376Z"
+  },
+  "dfd5d6648be46426e418801584d46a68::full": {
+    "homeTeam": "Bournemouth",
+    "awayTeam": "Sunderland",
+    "commenceTime": "2026-10-18T13:00:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 2,
+      "draw": 3.5,
+      "away": 3.4
+    },
+    "asianHandicap": {
+      "bookmaker": "Marathon Bet",
+      "homePoint": -1,
+      "homeOdd": 2.88,
+      "awayPoint": 1,
+      "awayOdd": 1.43
+    },
+    "totals": {
+      "bookmaker": "Codere (IT)",
+      "point": 2.5,
+      "overOdd": 1.74,
+      "underOdd": 1.94,
+      "overProb": 53,
+      "underProb": 47,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 46,
+      "draw": 26,
+      "away": 27
+    },
+    "analysis": {
+      "favoriteTeam": "Bournemouth",
+      "marginGoals": 1,
+      "suggestedScore": {
+        "home": 2,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1 cho Bournemouth) cho thấy Bournemouth được đánh giá nhỉnh hơn Sunderland khoảng 1 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (53% Tài / 47% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 42,
+      "drawProb": 23,
+      "awayWinProb": 34,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Bournemouth",
+      "awayTeam": "Sunderland",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 5,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Liverpool",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Brentford",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T11:30:00Z",
+          "opponent": "Newcastle United",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Everton",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Manchester City",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 5,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T19:00:00Z",
+          "opponent": "Arsenal",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Brentford",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Fulham",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Bournemouth",
+      "verdict": {
+        "side": "home",
+        "team": "Bournemouth",
+        "prob": 53,
+        "label": "Bournemouth thắng (53%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 9.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 9.6
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 7.2
+        }
+      ],
+      "winDrawAway": {
+        "home": 53,
+        "draw": 22,
+        "away": 25
+      },
+      "notes": [
+        "Bournemouth (sân nhà, 3 trận gần nhất): ghi 1.0 · thủng 1.3 bàn/trận.",
+        "Sunderland (sân khách, 3 trận gần nhất): ghi 1.7 · thủng 2.7 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1 cho Bournemouth.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Bournemouth được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 48,
+      "drawProb": 23,
+      "awayWinProb": 30,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Bournemouth — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.377Z"
+  },
+  "9fc08b390a49c4434f7cf631a0bb88fb::full": {
+    "homeTeam": "Brighton and Hove Albion",
+    "awayTeam": "Crystal Palace",
+    "commenceTime": "2026-10-18T13:00:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 1.57,
+      "draw": 4.2,
+      "away": 5
+    },
+    "asianHandicap": {
+      "bookmaker": "MyBookie.ag",
+      "homePoint": -1.5,
+      "homeOdd": 2.31,
+      "awayPoint": 1.5,
+      "awayOdd": 1.55
+    },
+    "totals": {
+      "bookmaker": "Codere (IT)",
+      "point": 3.5,
+      "overOdd": 2.29,
+      "underOdd": 1.53,
+      "overProb": 40,
+      "underProb": 60,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 59,
+      "draw": 22,
+      "away": 19
+    },
+    "analysis": {
+      "favoriteTeam": "Brighton and Hove Albion",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 3,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1.5 cho Brighton and Hove Albion) cho thấy Brighton and Hove Albion được đánh giá nhỉnh hơn Crystal Palace khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 3.5 bàn, thị trường nghiêng Xỉu (Under) (40% Tài / 60% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 62,
+      "drawProb": 20,
+      "awayWinProb": 18,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Brighton and Hove Albion",
+      "awayTeam": "Crystal Palace",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Arsenal",
+          "venue": "home",
+          "goalsFor": 3,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-13T13:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "away",
+          "goalsFor": 5,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "home",
+          "goalsFor": 3,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Fulham",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-28T19:00:00Z",
+          "opponent": "Manchester City",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Brighton and Hove Albion",
+      "verdict": {
+        "side": "home",
+        "team": "Brighton and Hove Albion",
+        "prob": 71,
+        "label": "Brighton and Hove Albion thắng (71%)"
+      },
+      "topScorelines": [
+        {
+          "home": 2,
+          "away": 0,
+          "probabilityPct": 14.6
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 14.3
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "probabilityPct": 9.9
+        }
+      ],
+      "winDrawAway": {
+        "home": 71,
+        "draw": 19,
+        "away": 10
+      },
+      "notes": [
+        "Brighton and Hove Albion (sân nhà, 3 trận gần nhất): ghi 2.7 · thủng 0.3 bàn/trận.",
+        "Crystal Palace (sân khách, 3 trận gần nhất): ghi 1.0 · thủng 1.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1.5 cho Brighton and Hove Albion.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Brighton and Hove Albion được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 67,
+      "drawProb": 20,
+      "awayWinProb": 14,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Brighton and Hove Albion — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.378Z"
+  },
+  "676b3b0b609e9cf565da450786618d26::full": {
+    "homeTeam": "Leeds United",
+    "awayTeam": "Manchester United",
+    "commenceTime": "2026-10-18T13:00:00Z",
+    "odds": {
+      "bookmaker": "Winamax (FR)",
+      "home": 2.25,
+      "draw": 3.55,
+      "away": 2.7
+    },
+    "asianHandicap": {
+      "bookmaker": "MyBookie.ag",
+      "homePoint": -0.5,
+      "homeOdd": 2.26,
+      "awayPoint": 0.5,
+      "awayOdd": 1.57
+    },
+    "totals": {
+      "bookmaker": "MyBookie.ag",
+      "point": 2.5,
+      "overOdd": 1.6,
+      "underOdd": 2.19,
+      "overProb": 58,
+      "underProb": 42,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 41,
+      "draw": 26,
+      "away": 34
+    },
+    "analysis": {
+      "favoriteTeam": "Leeds United",
+      "marginGoals": 0.5,
+      "suggestedScore": {
+        "home": 2,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -0.5 cho Leeds United) cho thấy Leeds United được đánh giá nhỉnh hơn Manchester United khoảng 0.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (58% Tài / 42% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 49,
+      "drawProb": 22,
+      "awayWinProb": 29,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Leeds United",
+      "awayTeam": "Manchester United",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T11:30:00Z",
+          "opponent": "Arsenal",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-14T19:00:00Z",
+          "opponent": "Newcastle United",
+          "venue": "home",
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Brentford",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T16:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-20T15:30:00Z",
+          "opponent": "Fulham",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-13T15:30:00Z",
+          "opponent": "Manchester City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-06T13:00:00Z",
+          "opponent": "Everton",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T15:30:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "home",
+          "goalsFor": 5,
+          "goalsAgainst": 2,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Leeds United",
+      "verdict": {
+        "side": "home",
+        "team": "Leeds United",
+        "prob": 53,
+        "label": "Leeds United thắng (53%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 13
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 11.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "probabilityPct": 10.3
+        }
+      ],
+      "winDrawAway": {
+        "home": 53,
+        "draw": 25,
+        "away": 22
+      },
+      "notes": [
+        "Leeds United (sân nhà, 3 trận gần nhất): ghi 1.7 · thủng 0.7 bàn/trận.",
+        "Manchester United (sân khách, 3 trận gần nhất): ghi 1.0 · thủng 1.7 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -0.5 cho Leeds United.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Leeds United được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 51,
+      "drawProb": 24,
+      "awayWinProb": 26,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Leeds United — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.380Z"
+  },
+  "f696a248965373d9071dc0662e5c58a8::full": {
+    "homeTeam": "Nottingham Forest",
+    "awayTeam": "Arsenal",
+    "commenceTime": "2026-10-18T15:30:00Z",
+    "odds": {
+      "bookmaker": "MyBookie.ag",
+      "home": 5.5,
+      "draw": 3.85,
+      "away": 1.57
+    },
+    "asianHandicap": {
+      "bookmaker": "MyBookie.ag",
+      "homePoint": 0.5,
+      "homeOdd": 2.28,
+      "awayPoint": -0.5,
+      "awayOdd": 1.56
+    },
+    "totals": {
+      "bookmaker": "MyBookie.ag",
+      "point": 2.5,
+      "overOdd": 1.85,
+      "underOdd": 1.85,
+      "overProb": 50,
+      "underProb": 50,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 17,
+      "draw": 24,
+      "away": 59
+    },
+    "analysis": {
+      "favoriteTeam": "Arsenal",
+      "marginGoals": 0.5,
+      "suggestedScore": {
+        "home": 1,
+        "away": 2
+      },
+      "notes": [
+        "Kèo châu Á (chấp +0.5 cho Nottingham Forest) cho thấy Arsenal được đánh giá nhỉnh hơn Nottingham Forest khoảng 0.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Xỉu (Under) (50% Tài / 50% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 33,
+      "drawProb": 24,
+      "awayWinProb": 43,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Nottingham Forest",
+      "awayTeam": "Arsenal",
+      "homeRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-19T16:30:00Z",
+          "opponent": "Coventry City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Aston Villa",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T11:30:00Z",
+          "opponent": "Liverpool",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T11:30:00Z",
+          "opponent": "Leeds United",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T19:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-06T15:30:00Z",
+          "opponent": "Chelsea",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-31T19:00:00Z",
+          "opponent": "Aston Villa",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Arsenal",
+      "verdict": {
+        "side": "away",
+        "team": "Arsenal",
+        "prob": 44,
+        "label": "Arsenal thắng (44%)"
+      },
+      "topScorelines": [
+        {
+          "home": 0,
+          "away": 0,
+          "probabilityPct": 26.4
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "probabilityPct": 23.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 12.1
+        }
+      ],
+      "winDrawAway": {
+        "home": 18,
+        "draw": 38,
+        "away": 44
+      },
+      "notes": [
+        "Nottingham Forest (sân nhà, 3 trận gần nhất): ghi 0.0 · thủng 0.7 bàn/trận.",
+        "Arsenal (sân khách, 3 trận gần nhất): ghi 1.0 · thủng 1.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp +0.5 cho Nottingham Forest.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Arsenal được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 26,
+      "drawProb": 31,
+      "awayWinProb": 44,
+      "agreement": "agree",
+      "note": "Cả 2 nguồn đều nghiêng về Arsenal, nhưng mức độ chênh lệch khá khác nhau giữa 2 cách tính."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.384Z"
+  },
+  "9baaf4e48b041cfef04e70e42532502e::full": {
+    "homeTeam": "Tottenham Hotspur",
+    "awayTeam": "Coventry City",
+    "commenceTime": "2026-10-19T19:00:00Z",
+    "odds": {
+      "bookmaker": "Marathon Bet",
+      "home": 1.5,
+      "draw": 4.6,
+      "away": 6.3
+    },
+    "asianHandicap": {
+      "bookmaker": "Marathon Bet",
+      "homePoint": -1,
+      "homeOdd": 1.8,
+      "awayPoint": 1,
+      "awayOdd": 2.04
+    },
+    "totals": {
+      "bookmaker": "Marathon Bet",
+      "point": 2.5,
+      "overOdd": 1.59,
+      "underOdd": 2.39,
+      "overProb": 60,
+      "underProb": 40,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 64,
+      "draw": 21,
+      "away": 15
+    },
+    "analysis": {
+      "favoriteTeam": "Tottenham Hotspur",
+      "marginGoals": 1,
+      "suggestedScore": {
+        "home": 2,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1 cho Tottenham Hotspur) cho thấy Tottenham Hotspur được đánh giá nhỉnh hơn Coventry City khoảng 1 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (60% Tài / 40% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 39,
+      "drawProb": 23,
+      "awayWinProb": 38,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Tottenham Hotspur",
+      "awayTeam": "Coventry City",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T16:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T11:30:00Z",
+          "opponent": "Aston Villa",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T16:30:00Z",
+          "opponent": "Everton",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T16:30:00Z",
+          "opponent": "Newcastle United",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-12T19:00:00Z",
+          "opponent": "Newcastle United",
+          "venue": "home",
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T16:30:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-13T13:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 5,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Manchester City",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Hull City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Tottenham Hotspur",
+      "verdict": {
+        "side": "home",
+        "team": "Tottenham Hotspur",
+        "prob": 48,
+        "label": "Tottenham Hotspur thắng (48%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 16.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "probabilityPct": 13.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 12.7
+        }
+      ],
+      "winDrawAway": {
+        "home": 48,
+        "draw": 30,
+        "away": 22
+      },
+      "notes": [
+        "Tottenham Hotspur (sân nhà, 3 trận gần nhất): ghi 0.7 · thủng 1.7 bàn/trận.",
+        "Coventry City (sân khách, 3 trận gần nhất): ghi 0.3 · thủng 1.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1 cho Tottenham Hotspur.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Tottenham Hotspur được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 44,
+      "drawProb": 27,
+      "awayWinProb": 30,
+      "agreement": "agree",
+      "note": "Cả 2 nguồn đều nghiêng về Tottenham Hotspur, nhưng mức độ chênh lệch khá khác nhau giữa 2 cách tính."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.386Z"
+  },
+  "d0202960708a442401d7fc7bd74a0183::full": {
+    "homeTeam": "Ipswich Town",
+    "awayTeam": "Nottingham Forest",
+    "commenceTime": "2026-10-23T19:00:00Z",
+    "odds": {
+      "bookmaker": "MyBookie.ag",
+      "home": 2.95,
+      "draw": 3.4,
+      "away": 2.24
+    },
+    "asianHandicap": {
+      "bookmaker": "MyBookie.ag",
+      "homePoint": 0.5,
+      "homeOdd": 1.61,
+      "awayPoint": -0.5,
+      "awayOdd": 2.19
+    },
+    "totals": {
+      "bookmaker": "MyBookie.ag",
+      "point": 2.5,
+      "overOdd": 1.75,
+      "underOdd": 1.96,
+      "overProb": 53,
+      "underProb": 47,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 31,
+      "draw": 27,
+      "away": 41
+    },
+    "analysis": {
+      "favoriteTeam": "Nottingham Forest",
+      "marginGoals": 0.5,
+      "suggestedScore": {
+        "home": 1,
+        "away": 2
+      },
+      "notes": [
+        "Kèo châu Á (chấp +0.5 cho Ipswich Town) cho thấy Nottingham Forest được đánh giá nhỉnh hơn Ipswich Town khoảng 0.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (53% Tài / 47% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 44,
+      "drawProb": 28,
+      "awayWinProb": 28,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Ipswich Town",
+      "awayTeam": "Nottingham Forest",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Fulham",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Everton",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-04T19:00:00Z",
+          "opponent": "Liverpool",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-30T15:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 5,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-19T16:30:00Z",
+          "opponent": "Coventry City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Aston Villa",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T11:30:00Z",
+          "opponent": "Liverpool",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": null,
+      "verdict": {
+        "side": "away",
+        "team": "Nottingham Forest",
+        "prob": 42,
+        "label": "Nottingham Forest thắng (42%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 10.6
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "probabilityPct": 8.8
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 7.9
+        }
+      ],
+      "winDrawAway": {
+        "home": 35,
+        "draw": 24,
+        "away": 42
+      },
+      "notes": [
+        "Ipswich Town (sân nhà, 3 trận gần nhất): ghi 1.3 · thủng 1.3 bàn/trận.",
+        "Nottingham Forest (sân khách, 3 trận gần nhất): ghi 1.7 · thủng 2.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp +0.5 cho Ipswich Town.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), 2 đội khá cân bằng — khó nghiêng hẳn về bên nào."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 40,
+      "drawProb": 26,
+      "awayWinProb": 35,
+      "agreement": "disagree",
+      "note": "\"Dự đoán ML\" nghiêng về Ipswich Town, trong khi \"Phân tích phong độ & đối đầu\" lại nghiêng về Nottingham Forest — 2 nguồn trái chiều, nên tham khảo thận trọng hơn."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.388Z"
+  },
+  "aca5dd297dbee71f576f7641569fe578::full": {
+    "homeTeam": "Aston Villa",
+    "awayTeam": "Manchester City",
+    "commenceTime": "2026-10-24T11:30:00Z",
+    "odds": {
+      "bookmaker": "Winamax (DE)",
+      "home": 4.1,
+      "draw": 4,
+      "away": 1.68
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 1.5,
+      "homeOdd": 1.51,
+      "awayPoint": -1.5,
+      "awayOdd": 2.82
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 3.5,
+      "overOdd": 2.45,
+      "underOdd": 1.65,
+      "overProb": 40,
+      "underProb": 60,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 22,
+      "draw": 23,
+      "away": 55
+    },
+    "analysis": {
+      "favoriteTeam": "Manchester City",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 1,
+        "away": 3
+      },
+      "notes": [
+        "Kèo châu Á (chấp +1.5 cho Aston Villa) cho thấy Manchester City được đánh giá nhỉnh hơn Aston Villa khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 3.5 bàn, thị trường nghiêng Xỉu (Under) (40% Tài / 60% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 23,
+      "drawProb": 22,
+      "awayWinProb": 55,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Aston Villa",
+      "awayTeam": "Manchester City",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Brentford",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T11:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T16:30:00Z",
+          "opponent": "Hull City",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-31T19:00:00Z",
+          "opponent": "Arsenal",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-11T15:30:00Z",
+          "opponent": "Liverpool",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "home",
+          "goalsFor": 5,
+          "goalsAgainst": 3,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-13T15:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-28T19:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "away",
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Manchester City",
+      "verdict": {
+        "side": "away",
+        "team": "Manchester City",
+        "prob": 72,
+        "label": "Manchester City thắng (72%)"
+      },
+      "topScorelines": [
+        {
+          "home": 0,
+          "away": 2,
+          "probabilityPct": 13.9
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "probabilityPct": 12.8
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "probabilityPct": 10
+        }
+      ],
+      "winDrawAway": {
+        "home": 10,
+        "draw": 18,
+        "away": 72
+      },
+      "notes": [
+        "Aston Villa (sân nhà, 3 trận gần nhất): ghi 1.0 · thủng 1.7 bàn/trận.",
+        "Manchester City (sân khách, 3 trận gần nhất): ghi 2.7 · thủng 0.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp +1.5 cho Aston Villa.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Manchester City được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 17,
+      "drawProb": 20,
+      "awayWinProb": 64,
+      "agreement": "agree",
+      "note": "Cả 2 nguồn đều nghiêng về Manchester City, nhưng mức độ chênh lệch khá khác nhau giữa 2 cách tính."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.389Z"
+  },
+  "f66e4f29c1b7bcfc5ab58c0b88c8850b::full": {
+    "homeTeam": "Arsenal",
+    "awayTeam": "Everton",
+    "commenceTime": "2026-10-24T14:00:00Z",
+    "odds": {
+      "bookmaker": "Winamax (DE)",
+      "home": 1.34,
+      "draw": 4.9,
+      "away": 7.25
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": -1.5,
+      "homeOdd": 2.15,
+      "awayPoint": 1.5,
+      "awayOdd": 1.81
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 2.5,
+      "overOdd": 1.83,
+      "underOdd": 2.14,
+      "overProb": 54,
+      "underProb": 46,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 69,
+      "draw": 19,
+      "away": 13
+    },
+    "analysis": {
+      "favoriteTeam": "Arsenal",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 3,
+        "away": 0
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1.5 cho Arsenal) cho thấy Arsenal được đánh giá nhỉnh hơn Everton khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (54% Tài / 46% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 57,
+      "drawProb": 25,
+      "awayWinProb": 18,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Arsenal",
+      "awayTeam": "Everton",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T11:30:00Z",
+          "opponent": "Leeds United",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T19:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-06T15:30:00Z",
+          "opponent": "Chelsea",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-31T19:00:00Z",
+          "opponent": "Aston Villa",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Hull City",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T16:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-06T13:00:00Z",
+          "opponent": "Manchester United",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Arsenal",
+      "verdict": {
+        "side": "home",
+        "team": "Arsenal",
+        "prob": 65,
+        "label": "Arsenal thắng (65%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 15.1
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "probabilityPct": 13.8
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 10.1
+        }
+      ],
+      "winDrawAway": {
+        "home": 65,
+        "draw": 22,
+        "away": 13
+      },
+      "notes": [
+        "Arsenal (sân nhà, 3 trận gần nhất): ghi 2.3 · thủng 0.7 bàn/trận.",
+        "Everton (sân khách, 3 trận gần nhất): ghi 1.0 · thủng 1.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1.5 cho Arsenal.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Arsenal được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 61,
+      "drawProb": 24,
+      "awayWinProb": 16,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Arsenal — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.474Z"
+  },
+  "0fbb2626ed9534b9dcf21d16925f9bd7::full": {
+    "homeTeam": "Coventry City",
+    "awayTeam": "Fulham",
+    "commenceTime": "2026-10-24T14:00:00Z",
+    "odds": {
+      "bookmaker": "Winamax (DE)",
+      "home": 2.75,
+      "draw": 3.55,
+      "away": 2.25
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 0,
+      "homeOdd": 2.25,
+      "awayPoint": 0,
+      "awayOdd": 1.75
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 2.5,
+      "overOdd": 1.81,
+      "underOdd": 2.15,
+      "overProb": 54,
+      "underProb": 46,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 33,
+      "draw": 26,
+      "away": 41
+    },
+    "analysis": {
+      "favoriteTeam": null,
+      "marginGoals": 0,
+      "suggestedScore": null,
+      "notes": [
+        "Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (54% Tài / 46% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 48,
+      "drawProb": 23,
+      "awayWinProb": 29,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Coventry City",
+      "awayTeam": "Fulham",
+      "homeRecent": [
+        {
+          "date": "2026-10-12T19:00:00Z",
+          "opponent": "Newcastle United",
+          "venue": "home",
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T16:30:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-13T13:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 5,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Manchester City",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Hull City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T15:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Liverpool",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": null,
+      "verdict": {
+        "side": "away",
+        "team": "Fulham",
+        "prob": 38,
+        "label": "Fulham thắng (38%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 12.8
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "probabilityPct": 10.6
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "probabilityPct": 9.9
+        }
+      ],
+      "winDrawAway": {
+        "home": 35,
+        "draw": 27,
+        "away": 38
+      },
+      "notes": [
+        "Coventry City (sân nhà, 3 trận gần nhất): ghi 1.3 · thủng 2.3 bàn/trận.",
+        "Fulham (sân khách, 3 trận gần nhất): ghi 0.3 · thủng 1.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp 0 cho Coventry City.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), 2 đội khá cân bằng — khó nghiêng hẳn về bên nào."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 42,
+      "drawProb": 25,
+      "awayWinProb": 34,
+      "agreement": "disagree",
+      "note": "\"Dự đoán ML\" nghiêng về Coventry City, trong khi \"Phân tích phong độ & đối đầu\" lại nghiêng về Fulham — 2 nguồn trái chiều, nên tham khảo thận trọng hơn."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.476Z"
+  },
+  "0382a9faef0bb8df1bcc436536cffb05::full": {
+    "homeTeam": "Chelsea",
+    "awayTeam": "Tottenham Hotspur",
+    "commenceTime": "2026-10-24T16:30:00Z",
+    "odds": {
+      "bookmaker": "1xBet",
+      "home": 1.9,
+      "draw": 4.11,
+      "away": 4.06
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 0,
+      "homeOdd": 1.44,
+      "awayPoint": 0,
+      "awayOdd": 3.1
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 2.5,
+      "overOdd": 1.66,
+      "underOdd": 2.42,
+      "overProb": 59,
+      "underProb": 41,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 52,
+      "draw": 24,
+      "away": 24
+    },
+    "analysis": {
+      "favoriteTeam": null,
+      "marginGoals": 0,
+      "suggestedScore": null,
+      "notes": [
+        "Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (59% Tài / 41% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 56,
+      "drawProb": 25,
+      "awayWinProb": 19,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Chelsea",
+      "awayTeam": "Tottenham Hotspur",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "home",
+          "goalsFor": 5,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-18T19:00:00Z",
+          "opponent": "Brentford",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Hull City",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-06T15:30:00Z",
+          "opponent": "Arsenal",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "home",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T16:30:00Z",
+          "opponent": "Manchester United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T11:30:00Z",
+          "opponent": "Aston Villa",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T16:30:00Z",
+          "opponent": "Everton",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T16:30:00Z",
+          "opponent": "Newcastle United",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Chelsea",
+      "verdict": {
+        "side": "home",
+        "team": "Chelsea",
+        "prob": 53,
+        "label": "Chelsea thắng (53%)"
+      },
+      "topScorelines": [
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 9.1
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 8.4
+        },
+        {
+          "home": 2,
+          "away": 2,
+          "probabilityPct": 6.8
+        }
+      ],
+      "winDrawAway": {
+        "home": 53,
+        "draw": 21,
+        "away": 27
+      },
+      "notes": [
+        "Chelsea (sân nhà, 3 trận gần nhất): ghi 3.7 · thủng 2.0 bàn/trận.",
+        "Tottenham Hotspur (sân khách, 3 trận gần nhất): ghi 0.3 · thủng 1.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp 0 cho Chelsea.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Chelsea được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 55,
+      "drawProb": 23,
+      "awayWinProb": 23,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Chelsea — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.479Z"
+  },
+  "33fb7467b23c91d57dc976d9ab05ea97::full": {
+    "homeTeam": "Manchester United",
+    "awayTeam": "Bournemouth",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "odds": {
+      "bookmaker": "1xBet",
+      "home": 1.86,
+      "draw": 4.26,
+      "away": 4.11
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": -1.5,
+      "homeOdd": 3.08,
+      "awayPoint": 1.5,
+      "awayOdd": 1.45
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 3.5,
+      "overOdd": 2.23,
+      "underOdd": 1.76,
+      "overProb": 44,
+      "underProb": 56,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 53,
+      "draw": 23,
+      "away": 24
+    },
+    "analysis": {
+      "favoriteTeam": "Manchester United",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 3,
+        "away": 1
+      },
+      "notes": [
+        "Kèo châu Á (chấp -1.5 cho Manchester United) cho thấy Manchester United được đánh giá nhỉnh hơn Bournemouth khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 3.5 bàn, thị trường nghiêng Xỉu (Under) (44% Tài / 56% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 56,
+      "drawProb": 21,
+      "awayWinProb": 24,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Manchester United",
+      "awayTeam": "Bournemouth",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T16:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-20T15:30:00Z",
+          "opponent": "Fulham",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-13T15:30:00Z",
+          "opponent": "Manchester City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-06T13:00:00Z",
+          "opponent": "Everton",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T15:30:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "home",
+          "goalsFor": 5,
+          "goalsAgainst": 2,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 5,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Liverpool",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 1,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Brentford",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T11:30:00Z",
+          "opponent": "Newcastle United",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Everton",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Manchester United",
+      "verdict": {
+        "side": "home",
+        "team": "Manchester United",
+        "prob": 66,
+        "label": "Manchester United thắng (66%)"
+      },
+      "topScorelines": [
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 9.2
+        },
+        {
+          "home": 3,
+          "away": 1,
+          "probabilityPct": 7.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "probabilityPct": 7.3
+        }
+      ],
+      "winDrawAway": {
+        "home": 66,
+        "draw": 18,
+        "away": 17
+      },
+      "notes": [
+        "Manchester United (sân nhà, 3 trận gần nhất): ghi 2.0 · thủng 1.3 bàn/trận.",
+        "Bournemouth (sân khách, 3 trận gần nhất): ghi 1.3 · thủng 3.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp -1.5 cho Manchester United.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Manchester United được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 61,
+      "drawProb": 20,
+      "awayWinProb": 21,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Manchester United — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.481Z"
+  },
+  "69493b5ebb84f24ab1d6023a30ee89f0::full": {
+    "homeTeam": "Hull City",
+    "awayTeam": "Brentford",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "odds": {
+      "bookmaker": "Winamax (DE)",
+      "home": 4.2,
+      "draw": 3.9,
+      "away": 1.68
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 1.5,
+      "homeOdd": 1.46,
+      "awayPoint": -1.5,
+      "awayOdd": 3.04
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 2.5,
+      "overOdd": 1.73,
+      "underOdd": 2.28,
+      "overProb": 57,
+      "underProb": 43,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 22,
+      "draw": 24,
+      "away": 55
+    },
+    "analysis": {
+      "favoriteTeam": "Brentford",
+      "marginGoals": 1.5,
+      "suggestedScore": {
+        "home": 0,
+        "away": 3
+      },
+      "notes": [
+        "Kèo châu Á (chấp +1.5 cho Hull City) cho thấy Brentford được đánh giá nhỉnh hơn Hull City khoảng 1.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (57% Tài / 43% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 44,
+      "drawProb": 23,
+      "awayWinProb": 32,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Hull City",
+      "awayTeam": "Brentford",
+      "homeRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Everton",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Newcastle United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T16:30:00Z",
+          "opponent": "Aston Villa",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T14:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Aston Villa",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-18T19:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "home",
+          "goalsFor": 3,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Brentford",
+      "verdict": {
+        "side": "away",
+        "team": "Brentford",
+        "prob": 51,
+        "label": "Brentford thắng (51%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 11.8
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "probabilityPct": 11.3
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "probabilityPct": 9.6
+        }
+      ],
+      "winDrawAway": {
+        "home": 24,
+        "draw": 25,
+        "away": 51
+      },
+      "notes": [
+        "Hull City (sân nhà, 3 trận gần nhất): ghi 1.3 · thủng 0.7 bàn/trận.",
+        "Brentford (sân khách, 3 trận gần nhất): ghi 1.7 · thủng 1.7 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp +1.5 cho Hull City.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Brentford được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 34,
+      "drawProb": 24,
+      "awayWinProb": 42,
+      "agreement": "disagree",
+      "note": "\"Dự đoán ML\" nghiêng về Hull City, trong khi \"Phân tích phong độ & đối đầu\" lại nghiêng về Brentford — 2 nguồn trái chiều, nên tham khảo thận trọng hơn."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.483Z"
+  },
+  "290ba8cd3f3a2e9252effca673bf5549::full": {
+    "homeTeam": "Liverpool",
+    "awayTeam": "Brighton and Hove Albion",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 2,
+      "draw": 3.7,
+      "away": 3.2
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 0,
+      "homeOdd": 1.6,
+      "awayPoint": 0,
+      "awayOdd": 2.57
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 3.5,
+      "overOdd": 2.49,
+      "underOdd": 1.63,
+      "overProb": 40,
+      "underProb": 60,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 46,
+      "draw": 25,
+      "away": 29
+    },
+    "analysis": {
+      "favoriteTeam": null,
+      "marginGoals": 0,
+      "suggestedScore": null,
+      "notes": [
+        "Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.",
+        "Kèo tài xỉu ở mức 3.5 bàn, thị trường nghiêng Xỉu (Under) (40% Tài / 60% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 32,
+      "drawProb": 22,
+      "awayWinProb": 46,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Liverpool",
+      "awayTeam": "Brighton and Hove Albion",
+      "homeRecent": [
+        {
+          "date": "2026-10-11T15:30:00Z",
+          "opponent": "Manchester City",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Bournemouth",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Fulham",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-04T19:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-29T11:30:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Sunderland",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Arsenal",
+          "venue": "home",
+          "goalsFor": 3,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-13T13:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "away",
+          "goalsFor": 5,
+          "goalsAgainst": 0,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Chelsea",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "L"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Brighton and Hove Albion",
+      "verdict": {
+        "side": "away",
+        "team": "Brighton and Hove Albion",
+        "prob": 54,
+        "label": "Brighton and Hove Albion thắng (54%)"
+      },
+      "topScorelines": [
+        {
+          "home": 1,
+          "away": 2,
+          "probabilityPct": 9.4
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 8.9
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "probabilityPct": 6.9
+        }
+      ],
+      "winDrawAway": {
+        "home": 25,
+        "draw": 21,
+        "away": 54
+      },
+      "notes": [
+        "Liverpool (sân nhà, 3 trận gần nhất): ghi 0.7 · thủng 1.7 bàn/trận.",
+        "Brighton and Hove Albion (sân khách, 3 trận gần nhất): ghi 3.3 · thủng 1.3 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp 0 cho Liverpool.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Brighton and Hove Albion được đánh giá nhỉnh hơn rõ rệt."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 29,
+      "drawProb": 22,
+      "awayWinProb": 50,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Brighton and Hove Albion — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.486Z"
+  },
+  "fe235b26408c477368c40672a4488694::full": {
+    "homeTeam": "Crystal Palace",
+    "awayTeam": "Newcastle United",
+    "commenceTime": "2026-10-25T14:00:00Z",
+    "odds": {
+      "bookmaker": "MyBookie.ag",
+      "home": 2.59,
+      "draw": 3.46,
+      "away": 2.46
+    },
+    "asianHandicap": {
+      "bookmaker": "MyBookie.ag",
+      "homePoint": 0.5,
+      "homeOdd": 1.51,
+      "awayPoint": -0.5,
+      "awayOdd": 2.4
+    },
+    "totals": {
+      "bookmaker": "MyBookie.ag",
+      "point": 2.5,
+      "overOdd": 1.61,
+      "underOdd": 2.18,
+      "overProb": 58,
+      "underProb": 42,
+      "leanOver": true
+    },
+    "prediction": {
+      "home": 36,
+      "draw": 27,
+      "away": 38
+    },
+    "analysis": {
+      "favoriteTeam": "Newcastle United",
+      "marginGoals": 0.5,
+      "suggestedScore": {
+        "home": 1,
+        "away": 2
+      },
+      "notes": [
+        "Kèo châu Á (chấp +0.5 cho Crystal Palace) cho thấy Newcastle United được đánh giá nhỉnh hơn Crystal Palace khoảng 0.5 bàn.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Tài (Over) (58% Tài / 42% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 46,
+      "drawProb": 23,
+      "awayWinProb": 31,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Crystal Palace",
+      "awayTeam": "Newcastle United",
+      "homeRecent": [
+        {
+          "date": "2026-10-11T13:00:00Z",
+          "opponent": "Nottingham Forest",
+          "venue": "home",
+          "goalsFor": 3,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "away",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-12T14:00:00Z",
+          "opponent": "Ipswich Town",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Fulham",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "W"
+        },
+        {
+          "date": "2026-08-28T19:00:00Z",
+          "opponent": "Manchester City",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "result": "L"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-12T19:00:00Z",
+          "opponent": "Coventry City",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-19T14:00:00Z",
+          "opponent": "Hull City",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-14T19:00:00Z",
+          "opponent": "Leeds United",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T11:30:00Z",
+          "opponent": "Bournemouth",
+          "venue": "home",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-29T16:30:00Z",
+          "opponent": "Tottenham Hotspur",
+          "venue": "away",
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": null,
+      "verdict": {
+        "side": "away",
+        "team": "Newcastle United",
+        "prob": 41,
+        "label": "Newcastle United thắng (41%)"
+      },
+      "topScorelines": [
+        {
+          "home": 2,
+          "away": 2,
+          "probabilityPct": 7.3
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "probabilityPct": 6.9
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "probabilityPct": 6.6
+        }
+      ],
+      "winDrawAway": {
+        "home": 38,
+        "draw": 20,
+        "away": 41
+      },
+      "notes": [
+        "Crystal Palace (sân nhà, 3 trận gần nhất): ghi 2.0 · thủng 2.7 bàn/trận.",
+        "Newcastle United (sân khách, 3 trận gần nhất): ghi 1.3 · thủng 2.7 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp +0.5 cho Crystal Palace.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), 2 đội khá cân bằng — khó nghiêng hẳn về bên nào."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 42,
+      "drawProb": 22,
+      "awayWinProb": 36,
+      "agreement": "disagree",
+      "note": "\"Dự đoán ML\" nghiêng về Crystal Palace, trong khi \"Phân tích phong độ & đối đầu\" lại nghiêng về Newcastle United — 2 nguồn trái chiều, nên tham khảo thận trọng hơn."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.488Z"
+  },
+  "e82f6b60fa41b82c8510f5b67ce61849::full": {
+    "homeTeam": "Sunderland",
+    "awayTeam": "Leeds United",
+    "commenceTime": "2026-10-25T16:30:00Z",
+    "odds": {
+      "bookmaker": "888sport",
+      "home": 2.62,
+      "draw": 3.2,
+      "away": 2.5
+    },
+    "asianHandicap": {
+      "bookmaker": "1xBet",
+      "homePoint": 0,
+      "homeOdd": 2.07,
+      "awayPoint": 0,
+      "awayOdd": 1.88
+    },
+    "totals": {
+      "bookmaker": "1xBet",
+      "point": 2.5,
+      "overOdd": 2.14,
+      "underOdd": 1.83,
+      "overProb": 46,
+      "underProb": 54,
+      "leanOver": false
+    },
+    "prediction": {
+      "home": 35,
+      "draw": 29,
+      "away": 37
+    },
+    "analysis": {
+      "favoriteTeam": null,
+      "marginGoals": 0,
+      "suggestedScore": null,
+      "notes": [
+        "Kèo châu Á ở mức 0 (kèo hòa) — 2 đội được đánh giá ngang sức.",
+        "Kèo tài xỉu ở mức 2.5 bàn, thị trường nghiêng Xỉu (Under) (46% Tài / 54% Xỉu)."
+      ]
+    },
+    "mlPrediction": {
+      "available": true,
+      "homeWinProb": 35,
+      "drawProb": 26,
+      "awayWinProb": 40,
+      "modelMeta": {
+        "trainedAt": "2026-08-16T05:23:59.093Z",
+        "valAcc": 0.5,
+        "nTrain": 1102
+      },
+      "coldStartNotes": []
+    },
+    "statsPanel": {
+      "available": true,
+      "homeTeam": "Sunderland",
+      "awayTeam": "Leeds United",
+      "homeRecent": [
+        {
+          "date": "2026-10-10T14:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Manchester City",
+          "venue": "away",
+          "goalsFor": 3,
+          "goalsAgainst": 5,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-12T19:00:00Z",
+          "opponent": "Arsenal",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Brentford",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Fulham",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 0,
+          "result": "W"
+        }
+      ],
+      "awayRecent": [
+        {
+          "date": "2026-10-10T11:30:00Z",
+          "opponent": "Arsenal",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "result": "L"
+        },
+        {
+          "date": "2026-09-20T13:00:00Z",
+          "opponent": "Crystal Palace",
+          "venue": "home",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "D"
+        },
+        {
+          "date": "2026-09-14T19:00:00Z",
+          "opponent": "Newcastle United",
+          "venue": "home",
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05T14:00:00Z",
+          "opponent": "Brighton and Hove Albion",
+          "venue": "away",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        },
+        {
+          "date": "2026-08-30T13:00:00Z",
+          "opponent": "Brentford",
+          "venue": "home",
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "result": "D"
+        }
+      ],
+      "h2h": [],
+      "favoriteTeam": "Leeds United",
+      "verdict": {
+        "side": "away",
+        "team": "Leeds United",
+        "prob": 41,
+        "label": "Leeds United thắng (41%)"
+      },
+      "topScorelines": [
+        {
+          "home": 0,
+          "away": 1,
+          "probabilityPct": 16.7
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "probabilityPct": 16
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "probabilityPct": 13.2
+        }
+      ],
+      "winDrawAway": {
+        "home": 27,
+        "draw": 32,
+        "away": 41
+      },
+      "notes": [
+        "Sunderland (sân nhà, 3 trận gần nhất): ghi 0.3 · thủng 1.3 bàn/trận.",
+        "Leeds United (sân khách, 3 trận gần nhất): ghi 1.0 · thủng 1.0 bàn/trận.",
+        "Kèo châu Á hiện tại: chấp 0 cho Sunderland.",
+        "Kết hợp phong độ ghi/thủng bàn và kèo chấp (nếu có), Leeds United được đánh giá nhỉnh hơn nhẹ."
+      ],
+      "hasCurrentSeasonData": true
+    },
+    "consensus": {
+      "available": true,
+      "source": "both",
+      "homeWinProb": 31,
+      "drawProb": 29,
+      "awayWinProb": 41,
+      "agreement": "strong-agree",
+      "note": "Cả \"Dự đoán ML\" và \"Phân tích phong độ & đối đầu\" đều nghiêng về Leeds United — 2 góc nhìn khá thống nhất."
+    },
+    "frame": "full",
+    "lockedAt": "2026-10-15T02:05:36.576Z"
+  }
+}
