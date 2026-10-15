@@ -614,6 +614,29 @@
   .ledger-status.pending { background: var(--gridline); color: var(--text-secondary); }
   .ledger-status.hit-status { background: var(--success-text); color: #fff; }
   .ledger-status.miss-status { background: var(--loss-text); color: #fff; }
+  .ledger-consensus {
+    display: block;
+    width: fit-content;
+    margin-top: 5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .ledger-consensus.strong { background: var(--success-text); color: #fff; }
+  .ledger-consensus.normal { background: transparent; color: var(--success-text); border: 1px solid var(--success-text); }
+  .ledger-consensus.conflict { background: var(--loss-text); color: #fff; }
+  .ledger-consensus.single { background: var(--gridline); color: var(--text-secondary); border: none; }
+  .ledger-day-row td {
+    background: var(--page-plane);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 9px 12px;
+    border-top: 1px solid var(--gridline);
+    border-bottom: 1px solid var(--gridline);
+  }
   .ledger-empty {
     padding: 30px 16px;
     text-align: center;
@@ -671,6 +694,19 @@
 
     <div class="card">
       <div class="card-head">
+        <h2>Bảng sao kê dự đoán</h2>
+        <button id="ledger-download-btn">Tải về sao kê</button>
+      </div>
+      <div class="ledger-note">
+        Tự động ghi lại "chốt kèo" + 3 tỉ số dự đoán của khung "Phân tích phong độ &amp; đối đầu" cho mỗi trận ngay lần đầu xuất hiện, rồi tự đối chiếu với kết quả thật khi trận đấu xong. Ô tỉ số bôi vàng là tỉ số dự đoán khớp đúng kết quả thật. Cột "Chốt kèo" kèm theo mức độ "Dự đoán ML" và "Phân tích phong độ &amp; đối đầu" đồng ý với nhau (Đồng thuận mạnh/Đồng thuận/Trái chiều), ghi lại tại đúng thời điểm chốt. Sắp xếp từ trận sớm nhất đến muộn nhất, tách theo từng ngày.
+      </div>
+      <div id="ledger-wrap">
+        <div class="loading">Đang tải sao kê...</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
         <h2>Danh sách trận đấu</h2>
         <div class="legend">
           <span><i class="swatch home"></i>Chủ nhà thắng</span>
@@ -680,19 +716,6 @@
       </div>
       <div id="table-wrap">
         <div class="loading" id="loading-state">Đang tải dữ liệu...</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <h2>Bảng sao kê dự đoán</h2>
-        <button id="ledger-download-btn">Tải về sao kê</button>
-      </div>
-      <div class="ledger-note">
-        Tự động ghi lại "chốt kèo" + 3 tỉ số dự đoán của khung "Phân tích phong độ &amp; đối đầu" cho mỗi trận ngay lần đầu xuất hiện, rồi tự đối chiếu với kết quả thật khi trận đấu xong. Ô tỉ số bôi vàng là tỉ số dự đoán khớp đúng kết quả thật.
-      </div>
-      <div id="ledger-wrap">
-        <div class="loading">Đang tải sao kê...</div>
       </div>
     </div>
 

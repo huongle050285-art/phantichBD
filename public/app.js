@@ -631,6 +631,37 @@ function renderLedgerStatus(entry) {
   return `${verdictBadge} ${scoreBadge}`;
 }
 
+// Mức độ "Dự đoán ML" và "Phân tích phong độ & đối đầu" đồng ý với nhau, ghi
+// lại NGAY LÚC chốt kèo (xem src/ml/consensus.js + src/ml/predictionLog.js) —
+// cũng là 1 phần của "chốt", không tính lại sau này. Entry ghi lại TRƯỚC khi
+// có tính năng này (consensusAgreement = undefined) sẽ không hiện badge.
+const CONSENSUS_BADGES = {
+  'strong-agree': { label: 'Đồng thuận mạnh', cls: 'strong' },
+  agree: { label: 'Đồng thuận', cls: 'normal' },
+  disagree: { label: 'Trái chiều', cls: 'conflict' },
+  'ml-only': { label: 'Chỉ 1 nguồn (ML)', cls: 'single' },
+  'stats-only': { label: 'Chỉ 1 nguồn (Thống kê)', cls: 'single' },
+};
+
+function renderLedgerConsensus(entry) {
+  const info = CONSENSUS_BADGES[entry.consensusAgreement];
+  if (!info) return '';
+  return `<span class="ledger-consensus ${info.cls}">${info.label}</span>`;
+}
+
+// Gộp nhóm theo NGÀY (giờ địa phương người xem) để chèn 1 dòng tiêu đề ngày
+// trước mỗi nhóm trận — sắp xếp từ sớm nhất đến muộn nhất.
+function dayKeyOf(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+function fmtDayHeading(iso) {
+  const d = new Date(iso);
+  const text = d.toLocaleDateString('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 function renderLedgerTable(entries) {
   if (!entries.length) {
     ledgerWrap.innerHTML =
@@ -638,19 +669,30 @@ function renderLedgerTable(entries) {
     return;
   }
 
-  const rows = entries
-    .map(
-      (e) => `
+  const sorted = entries.slice().sort((a, b) => new Date(a.commenceTime) - new Date(b.commenceTime));
+
+  let lastDayKey = null;
+  const rows = sorted
+    .map((e) => {
+      const dayKey = dayKeyOf(e.commenceTime);
+      const dayHeaderRow =
+        dayKey !== lastDayKey
+          ? `<tr class="ledger-day-row"><td colspan="6">${fmtDayHeading(e.commenceTime)}</td></tr>`
+          : '';
+      lastDayKey = dayKey;
+
+      return `
+        ${dayHeaderRow}
         <tr>
           <td class="teams">${escapeHtml(e.homeTeam)} vs ${escapeHtml(e.awayTeam)}</td>
           <td class="num">${fmtDate(e.commenceTime)}</td>
-          <td>${escapeHtml(e.verdictLabel)}</td>
+          <td>${escapeHtml(e.verdictLabel)}${renderLedgerConsensus(e)}</td>
           <td>${renderLedgerScorelines(e)}</td>
           <td class="num">${e.status === 'resolved' ? `${e.actualHomeGoals}-${e.actualAwayGoals}` : '<span class="status-badge">Chưa đá</span>'}</td>
           <td>${renderLedgerStatus(e)}</td>
         </tr>
-      `
-    )
+      `;
+    })
     .join('');
 
   ledgerWrap.innerHTML = `
