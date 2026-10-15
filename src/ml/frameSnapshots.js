@@ -1,33 +1,31 @@
-// "Chốt kèo theo khung" — khoá lại TOÀN BỘ nội dung hiển thị của 1 trận (kèo
-// 1X2/châu Á/tài xỉu + cả 4 khối dự đoán: Dự đoán BD, Dự đoán ML, Phân tích
-// phong độ & đối đầu, Đồng thuận) ngay LẦN ĐẦU TIÊN 1 "khung" (frame) xuất
-// hiện, rồi không bao giờ tính lại/ghi đè nữa — ai xem trang vào bất kỳ lúc
-// nào sau đó cũng thấy ĐÚNG những gì đã chốt ban đầu cho khung đó, không bị
-// đổi theo biến động kèo/phong độ về sau.
+// "Chốt kèo theo khung" — mỗi trận có 1 khung "full" (cả trận, chốt ngay lần
+// đầu trận xuất hiện) và tuỳ lúc 1 khung "live" (chốt ngay lần đầu phát hiện
+// trận đã bắt đầu). Một khi đã chốt, dữ liệu KHÔNG BAO GIỜ bị tính lại hay
+// ghi đè — đây là nguyên tắc cốt lõi của tính năng này.
 //
-// 2 khung hiện có:
-//   - "full": chốt ngay lần đầu trận xuất hiện ở "Trận sắp diễn ra".
-//   - "live": chốt ngay lần đầu phát hiện trận đã bắt đầu diễn ra (commence
-//     time đã qua — The Odds API tự loại các trận đã đấu xong khỏi danh sách,
-//     nên hễ trận còn xuất hiện mà đã quá giờ bóng lăn thì chắc chắn đang live).
-//
-// Khác với src/ml/predictionLog.js ("Bảng sao kê dự đoán" — chỉ lưu "chốt
-// kèo" + 3 tỉ số để tính trúng/trật về sau): module này lưu TOÀN BỘ nội dung
-// hiển thị của 1 khung, phục vụ việc hiển thị match card không đổi theo thời
-// gian. 2 file lưu riêng biệt, không ảnh hưởng tới nhau.
-//
-// CẢNH BÁO (giống data/predictions-log.json): ổ đĩa Render free bị xoá sạch
-// mỗi lần deploy code mới — nên data/frame-snapshots.json cũng cần tải về
-// backup trước khi upload code mới, nếu không muốn các khung đã chốt bị tính
-// lại từ đầu sau mỗi lần cập nhật.
+// Có 2 nơi lưu trữ, chọn tự động theo cấu hình:
+// 1) Firebase Firestore (nếu đã cấu hình FIREBASE_SERVICE_ACCOUNT_BASE64) —
+//    bền vững, không bị xoá khi Render deploy lại code. Nên dùng khi đã
+//    chuyển sang Firebase (xem README.md).
+// 2) File data/frame-snapshots.json (mặc định, khi chưa cấu hình Firebase) —
+//    CẢNH BÁO: ổ đĩa Render free bị xoá mỗi lần deploy, cần tự bấm "Tải về
+//    dữ liệu các khung đã chốt" ở footer để backup trước khi cập nhật code.
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { isFirestoreEnabled, getDb } from '../firestoreDb.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SNAPSHOT_PATH = path.join(__dirname, '..', '..', 'data', 'frame-snapshots.json');
+const COLLECTION = 'frameSnapshots';
 
-function loadAll() {
+function keyFor(id, frame) {
+  return `${id}::${frame}`;
+}
+
+// --- Lưu file JSON local (mặc định, khi chưa cấu hình Firestore) ---
+
+function loadAllLocal() {
   if (!existsSync(SNAPSHOT_PATH)) return {};
   try {
     const raw = readFileSync(SNAPSHOT_PATH, 'utf-8');
@@ -39,7 +37,7 @@ function loadAll() {
   }
 }
 
-function saveAll(all) {
+function saveAllLocal(all) {
   try {
     const dir = path.dirname(SNAPSHOT_PATH);
     if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -49,40 +47,80 @@ function saveAll(all) {
   }
 }
 
-function keyFor(id, frame) {
-  return `${id}::${frame}`;
-}
-
-// Lấy snapshot đã chốt cho (id, frame), hoặc null nếu khung đó CHƯA từng chốt.
-export function getSnapshot(id, frame) {
-  const all = loadAll();
-  return all[keyFor(id, frame)] || null;
-}
-
-// Chốt 1 snapshot MỚI — payload là { homeTeam, awayTeam, commenceTime, odds,
-// asianHandicap, totals, prediction, analysis, mlPrediction, statsPanel,
-// consensus }. Nếu (id, frame) đã từng chốt trước đó, giữ NGUYÊN bản gốc,
-// không ghi đè (đây chính là cơ chế "chốt ngay từ đầu, không thay đổi").
-export function recordSnapshot(id, frame, payload) {
-  const all = loadAll();
+function getOrLockSnapshotLocal(id, frame, computePayload) {
+  const all = loadAllLocal();
   const key = keyFor(id, frame);
   if (all[key]) return all[key];
 
-  const entry = { ...payload, frame, lockedAt: new Date().toISOString() };
+  const entry = { ...computePayload(), frame, lockedAt: new Date().toISOString() };
   all[key] = entry;
-  saveAll(all);
+  saveAllLocal(all);
   return entry;
 }
 
-// Lấy snapshot đã chốt cho (id, frame) nếu có, hoặc chốt mới từ
-// `computePayload()` (chỉ gọi hàm tính toán khi THỰC SỰ cần, để không tính
-// toán thừa cho những khung đã chốt rồi).
-export function getOrLockSnapshot(id, frame, computePayload) {
-  const existing = getSnapshot(id, frame);
-  if (existing) return existing;
-  return recordSnapshot(id, frame, computePayload());
+function getAllLocal() {
+  return loadAllLocal();
 }
 
+// --- Firestore (khi đã cấu hình FIREBASE_SERVICE_ACCOUNT_BASE64) ---
+
+async function getOrLockSnapshotFirestore(id, frame, computePayload) {
+  const key = keyFor(id, frame);
+  const ref = getDb().collection(COLLECTION).doc(key);
+  const snap = await ref.get();
+  if (snap.exists) return snap.data();
+
+  const entry = { ...computePayload(), frame, lockedAt: new Date().toISOString() };
+  await ref.set(entry);
+  return entry;
+}
+
+async function getAllFirestore() {
+  const snapshot = await getDb().collection(COLLECTION).get();
+  const all = {};
+  snapshot.forEach((doc) => {
+    all[doc.id] = doc.data();
+  });
+  return all;
+}
+
+// --- API dùng chung (server.js chỉ cần gọi các hàm này) ---
+
+// Trả về khung đã chốt nếu đã có, hoặc tính mới (gọi computePayload()) rồi
+// chốt luôn lần đầu tiên. Lần gọi sau với cùng (id, frame) LUÔN trả về đúng
+// dữ liệu đã chốt lần đầu, không gọi lại computePayload().
+//
+// Nếu đã cấu hình Firestore nhưng xảy ra lỗi khi đọc/ghi (mất mạng, sai
+// quyền,...), hàm KHÔNG tự chuyển sang file JSON local (để tránh 1 khung bị
+// chốt rải rác ở 2 nơi khác nhau) — thay vào đó trả về dữ liệu tính tạm cho
+// lần gọi này (không lưu lại), và log lỗi để kiểm tra. Lần gọi kế tiếp (khi
+// Firestore hoạt động lại) sẽ chốt đúng như bình thường.
+export async function getOrLockSnapshot(id, frame, computePayload) {
+  if (isFirestoreEnabled()) {
+    try {
+      return await getOrLockSnapshotFirestore(id, frame, computePayload);
+    } catch (err) {
+      console.error('[Chốt kèo theo khung] Lỗi Firestore, tạm tính (không lưu) cho lần này:', err.message);
+      return { ...computePayload(), frame, lockedAt: new Date().toISOString(), unsaved: true };
+    }
+  }
+  return getOrLockSnapshotLocal(id, frame, computePayload);
+}
+
+// Trả về TOÀN BỘ các khung đã chốt — dùng cho endpoint backup/download.
+export async function getAllSnapshots() {
+  if (isFirestoreEnabled()) {
+    try {
+      return await getAllFirestore();
+    } catch (err) {
+      console.error('[Chốt kèo theo khung] Lỗi đọc Firestore:', err.message);
+      return {};
+    }
+  }
+  return getAllLocal();
+}
+
+// Chỉ có ý nghĩa khi đang ở chế độ file JSON local (không dùng Firestore).
 export function getSnapshotFilePath() {
   return SNAPSHOT_PATH;
 }

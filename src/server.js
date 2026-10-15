@@ -7,9 +7,22 @@ import { predictMatch } from './ml/predict.js';
 import { buildMatchStatsPanel } from './ml/matchAnalysis.js';
 import { buildConsensus } from './ml/consensus.js';
 import { recordPrediction, resolvePendingPredictions, getLog, getLogFilePath } from './ml/predictionLog.js';
-import { getOrLockSnapshot, getSnapshotFilePath } from './ml/frameSnapshots.js';
+import { getOrLockSnapshot, getAllSnapshots, getSnapshotFilePath } from './ml/frameSnapshots.js';
+import { isFirestoreEnabled } from './firestoreDb.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Lưới an toàn: 1 lỗi kết nối cấp thấp bất ngờ (vd socket Firestore bị ngắt
+// giữa đường) KHÔNG được làm sập cả server — chỉ log lại rồi tiếp tục chạy.
+// (Đã gặp thực tế khi test: lỗi mạng tới Firestore có thể thoát ra ngoài
+// dạng "uncaughtException"/"unhandledRejection" thay vì bị try/catch bắt
+// bình thường — xem ghi chú trong src/firestoreDb.js.)
+process.on('unhandledRejection', (err) => {
+  console.error('[Lỗi không bắt được - unhandledRejection] Server vẫn tiếp tục chạy:', err?.message || err);
+});
+process.on('uncaughtException', (err) => {
+  console.error('[Lỗi không bắt được - uncaughtException] Server vẫn tiếp tục chạy:', err?.message || err);
+});
 
 const API_KEY = process.env.API_FOOTBALL_KEY;
 const ODDS_API_KEY = process.env.ODDS_API_KEY;
@@ -262,7 +275,7 @@ async function getUpcomingMatchesCached() {
   // Đối chiếu các dự đoán đã ghi trước đó ("Bảng sao kê") với kết quả thật —
   // chạy ngay khi có currentSeasonMatches mới, không cần lịch chạy riêng.
   if (currentSeasonMatches) {
-    resolvePendingPredictions(currentSeasonMatches);
+    await resolvePendingPredictions(currentSeasonMatches);
   }
 
   // Tính TOÀN BỘ nội dung hiển thị (kèo + 4 khối dự đoán) cho 1 trận tại thời
@@ -368,43 +381,45 @@ async function getUpcomingMatchesCached() {
     };
   }
 
-  const matches = (events || []).map((ev) => {
-    const matchTime = new Date(ev.commence_time).getTime();
-    // The Odds API tự loại các trận đã đấu xong khỏi danh sách — nên hễ trận
-    // còn xuất hiện ở đây mà đã quá giờ bóng lăn thì chắc chắn đang live.
-    const isLive = matchTime <= Date.now();
+  const matches = await Promise.all(
+    (events || []).map(async (ev) => {
+      const matchTime = new Date(ev.commence_time).getTime();
+      // The Odds API tự loại các trận đã đấu xong khỏi danh sách — nên hễ trận
+      // còn xuất hiện ở đây mà đã quá giờ bóng lăn thì chắc chắn đang live.
+      const isLive = matchTime <= Date.now();
 
-    // "full" — chốt ngay lần đầu trận xuất hiện, không đổi về sau dù kèo/phong
-    // độ có cập nhật tiếp. "live" — chốt thêm 1 lần nữa, riêng, ngay lần đầu
-    // phát hiện trận đã live (giữ nguyên bản "full" gốc, không đụng tới).
-    const fullFrame = getOrLockSnapshot(ev.id, 'full', () => computeFramePayload(ev));
-    const liveFrame = isLive ? getOrLockSnapshot(ev.id, 'live', () => computeFramePayload(ev)) : null;
+      // "full" — chốt ngay lần đầu trận xuất hiện, không đổi về sau dù kèo/phong
+      // độ có cập nhật tiếp. "live" — chốt thêm 1 lần nữa, riêng, ngay lần đầu
+      // phát hiện trận đã live (giữ nguyên bản "full" gốc, không đụng tới).
+      const fullFrame = await getOrLockSnapshot(ev.id, 'full', () => computeFramePayload(ev));
+      const liveFrame = isLive ? await getOrLockSnapshot(ev.id, 'live', () => computeFramePayload(ev)) : null;
 
-    // Ghi vào "Bảng sao kê" dựa trên khung "full" (không đổi theo thời gian,
-    // đúng với tinh thần ledger) — recordPrediction tự bỏ qua nếu đã ghi rồi.
-    if (fullFrame.statsPanel?.available && fullFrame.statsPanel?.verdict) {
-      recordPrediction({
+      // Ghi vào "Bảng sao kê" dựa trên khung "full" (không đổi theo thời gian,
+      // đúng với tinh thần ledger) — recordPrediction tự bỏ qua nếu đã ghi rồi.
+      if (fullFrame.statsPanel?.available && fullFrame.statsPanel?.verdict) {
+        await recordPrediction({
+          id: ev.id,
+          homeTeam: fullFrame.homeTeam,
+          awayTeam: fullFrame.awayTeam,
+          commenceTime: fullFrame.commenceTime,
+          verdict: fullFrame.statsPanel.verdict,
+          topScorelines: fullFrame.statsPanel.topScorelines,
+        });
+      }
+
+      return {
         id: ev.id,
-        homeTeam: fullFrame.homeTeam,
-        awayTeam: fullFrame.awayTeam,
-        commenceTime: fullFrame.commenceTime,
-        verdict: fullFrame.statsPanel.verdict,
-        topScorelines: fullFrame.statsPanel.topScorelines,
-      });
-    }
-
-    return {
-      id: ev.id,
-      commenceTime: ev.commence_time,
-      homeTeam: ev.home_team,
-      awayTeam: ev.away_team,
-      isLive,
-      frames: {
-        full: fullFrame,
-        live: liveFrame,
-      },
-    };
-  });
+        commenceTime: ev.commence_time,
+        homeTeam: ev.home_team,
+        awayTeam: ev.away_team,
+        isLive,
+        frames: {
+          full: fullFrame,
+          live: liveFrame,
+        },
+      };
+    })
+  );
 
   setCached(key, matches);
   return matches;
@@ -460,37 +475,68 @@ app.get('/api/upcoming', async (req, res) => {
 
 // "Bảng sao kê dự đoán" — toàn bộ lịch sử chốt kèo + 3 tỉ số đã dự đoán, kèm
 // trạng thái trúng/trật (nếu trận đã có kết quả). Xem src/ml/predictionLog.js.
-app.get('/api/predictions-log', (req, res) => {
+app.get('/api/predictions-log', async (req, res) => {
   try {
-    res.json({ entries: getLog() });
+    res.json({ entries: await getLog() });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Tải file data/predictions-log.json nguyên bản về máy — dùng để tự backup
-// định kỳ (vì ổ đĩa Render free bị xoá mỗi lần deploy code mới, xem ghi chú
-// trong src/ml/predictionLog.js), rồi kéo lên GitHub cùng đợt code mới nếu
-// muốn giữ lại lịch sử cũ.
-app.get('/api/predictions-log/download', (req, res) => {
-  const filePath = getLogFilePath();
-  res.download(filePath, 'predictions-log.json', (err) => {
-    if (err && !res.headersSent) {
-      res.status(404).json({ error: 'Chưa có dữ liệu sao kê nào được ghi lại.' });
+// Tải dữ liệu "Bảng sao kê" về máy. Nếu ĐÃ cấu hình Firebase Firestore, dữ
+// liệu đã bền vững sẵn (không cần backup tay) — nút này vẫn giữ lại để tải
+// 1 bản JSON xem/lưu ngoài khi cần. Nếu CHƯA cấu hình Firestore, file
+// data/predictions-log.json nằm trên ổ đĩa tạm của Render free, cần tự bấm
+// tải định kỳ rồi kéo lên GitHub cùng đợt code mới nếu muốn giữ lịch sử cũ.
+app.get('/api/predictions-log/download', async (req, res) => {
+  try {
+    if (isFirestoreEnabled()) {
+      const entries = await getLog();
+      if (!entries.length) {
+        res.status(404).json({ error: 'Chưa có dữ liệu sao kê nào được ghi lại.' });
+        return;
+      }
+      res.setHeader('Content-Disposition', 'attachment; filename="predictions-log.json"');
+      res.json(entries);
+      return;
     }
-  });
+
+    const filePath = getLogFilePath();
+    res.download(filePath, 'predictions-log.json', (err) => {
+      if (err && !res.headersSent) {
+        res.status(404).json({ error: 'Chưa có dữ liệu sao kê nào được ghi lại.' });
+      }
+    });
+  } catch (err) {
+    if (!res.headersSent) res.status(500).json({ error: err.message });
+  }
 });
 
-// Tải file data/frame-snapshots.json ("chốt kèo theo khung") về máy — cùng lý
-// do với /api/predictions-log/download: cần tự backup trước khi deploy code
-// mới, nếu không các khung đã chốt sẽ bị tính lại từ đầu sau mỗi lần cập nhật.
-app.get('/api/frame-snapshots/download', (req, res) => {
-  const filePath = getSnapshotFilePath();
-  res.download(filePath, 'frame-snapshots.json', (err) => {
-    if (err && !res.headersSent) {
-      res.status(404).json({ error: 'Chưa có khung nào được chốt.' });
+// Tải dữ liệu "Chốt kèo theo khung" về máy — cùng cơ chế với
+// /api/predictions-log/download phía trên (Firestore nếu đã cấu hình, hoặc
+// file data/frame-snapshots.json nếu chưa).
+app.get('/api/frame-snapshots/download', async (req, res) => {
+  try {
+    if (isFirestoreEnabled()) {
+      const all = await getAllSnapshots();
+      if (!Object.keys(all).length) {
+        res.status(404).json({ error: 'Chưa có khung nào được chốt.' });
+        return;
+      }
+      res.setHeader('Content-Disposition', 'attachment; filename="frame-snapshots.json"');
+      res.json(all);
+      return;
     }
-  });
+
+    const filePath = getSnapshotFilePath();
+    res.download(filePath, 'frame-snapshots.json', (err) => {
+      if (err && !res.headersSent) {
+        res.status(404).json({ error: 'Chưa có khung nào được chốt.' });
+      }
+    });
+  } catch (err) {
+    if (!res.headersSent) res.status(500).json({ error: err.message });
+  }
 });
 
 // Lấy dự đoán cho 1 trận: /api/predictions/12345
